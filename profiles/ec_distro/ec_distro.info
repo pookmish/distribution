@@ -1,7 +1,6 @@
 name = Eagle Creek
+distribution_name = "Eagle Creek"
 description = Eagle Creek Software's Custom Distrobution
-version = 1.0
-core = 7.x
 
 ; Core Dependencies
 dependencies[] = block
@@ -24,13 +23,3 @@ dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
-
-; Contrib Dependencies
-dependencies[] = admin_views
-dependencies[] = features
-dependencies[] = admin_menu
-dependencies[] = module_filter
-dependencies[] = views_ui
-dependencies[] = context_ui
-dependencies[] = feature_basic_config
-dependencies[] = feature_basic_content
