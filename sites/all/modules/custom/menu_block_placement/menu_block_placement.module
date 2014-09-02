@@ -241,3 +241,4 @@ function menu_block_placement_views_api() {
     'path' => drupal_get_path('module', 'menu_block_placement') . '/includes',
   );
 }
+

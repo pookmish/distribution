@@ -4,7 +4,8 @@
 /sites/*/settings.php
 /files/*
 /cache
-
+/sites/default/themes
+/sites/default/modules
 
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /sites/default/**/files
