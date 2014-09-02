@@ -25,7 +25,7 @@ function menu_block_placement_field_info() {
 function menu_block_placement_field_widget_info() {
   return array(
     'menu_block_placement_widget' => array(
-      'label' => t('Menu Block Placement'),
+      'label' => t('Menu Block Placement Add. Settings'),
       'field types' => array('menu_block_placement_reference'),
     )
   );
@@ -50,21 +50,6 @@ function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $i
     }
   }
 
-  dpm($items);
-
-  $element['container'] = array(
-    '#type' => 'fieldset',
-    '#title' => t($instance['label']),
-  );
-  //multiselect list for menu items
-  $element['mlid'] = array(
-    '#type' => 'select',
-    '#title' => t('Menu Item'),
-    '#size' => 6,
-    '#options' => menu_block_placement_menu_options($field),
-    '#multiple' => TRUE,
-    '#default_value' => isset($items[0]['mlid']) ? $items[0]['mlid'] : '',
-  );
   //select list for the regions as established in the theme info file
   $element['region'] = array(
     '#type' => 'select',
@@ -81,6 +66,7 @@ function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $i
   );
   return $element;
 }
+
 
 function menu_block_placement_menu_options($field) {
   $options = array();
@@ -114,7 +100,7 @@ function menu_block_placement_menu_options($field) {
 /**
  * Implements hook_field_formatter_view().
  */
-/*function menu_block_placement_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+function menu_block_placement_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
 
   switch ($display['type']) {
@@ -127,17 +113,14 @@ function menu_block_placement_menu_options($field) {
         }
       }
       break;
-
   }
-
   return $element;
-}*/
+}
 
 /**
  * Implements hook_field_settings_form().
  */
 function menu_block_placement_field_settings_form($field, $instance) {
-
   $defaults = field_info_field_settings($field['type']);
   $settings = array_merge($defaults, $field['settings']);
 
@@ -182,33 +165,24 @@ function menu_block_placement_options_list($field, $instance, $entity_type, $ent
     return FALSE;
   }
 
-
   foreach ($default_menus as $key => $value) {
     if ($value === 0) {
       unset($default_menus[$key]);
     }
   }
-
   $settings_form_shown = FALSE;
   if (!empty($entity)) {
     $settings_form_shown = TRUE;
   }
 
-  $menus = menu_get_menus();
-
   $options = array();
-
   if ($settings_form_shown === TRUE) {
-
     $options = array();
-
     $items = menu_parent_options($default_menus, array("mlid" => 0));
 
     foreach ($items as $key => $value) {
       $exploded_key = explode(":", $key);
-
       $menu_machine_name = ucwords(str_replace("-", " ", array_shift($exploded_key)));
-
       $menu_id = array_pop($exploded_key);
 
       if ($menu_id != 0) {
@@ -218,9 +192,7 @@ function menu_block_placement_options_list($field, $instance, $entity_type, $ent
         ), "", $value);
       }
     }
-
   }
-
   return $options;
 }
 
