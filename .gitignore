@@ -4,12 +4,8 @@
 /sites/*/settings.php
 /files/*
 /cache
-<<<<<<< HEAD
 /sites/default/themes
 /sites/default/modules
-=======
-/sites/all/themes/*/.sass-cache
->>>>>>> a0a84fd99d09f7df5fee767ab5b6161403a060b4
 
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /sites/default/**/files
