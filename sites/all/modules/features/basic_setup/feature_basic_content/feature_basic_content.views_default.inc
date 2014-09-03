@@ -11,6 +11,71 @@ function feature_basic_content_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'basic_slideshow';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Basic Slideshow';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'full';
+  $handler->display->display_options['row_options']['links'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Slideshow Assignment (field_basic_slideshow_assignment:mlid) */
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['id'] = 'field_basic_slideshow_assignment_mlid';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['table'] = 'field_data_field_basic_slideshow_assignment';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['field'] = 'field_basic_slideshow_assignment_mlid';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['default_argument_type'] = 'menu_block_placement_mlid_per_node';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['limit'] = '0';
+  $handler->display->display_options['arguments']['field_basic_slideshow_assignment_mlid']['break_phrase'] = TRUE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'basic_slideshow' => 'basic_slideshow',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $export['basic_slideshow'] = $view;
+
+  $view = new view();
   $view->name = 'draggable_views';
   $view->description = '';
   $view->tag = 'default';
@@ -54,11 +119,11 @@ function feature_basic_content_views_default_views() {
   $handler->display->display_options['arguments']['field_basic_block_settings_region']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_basic_block_settings_region']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_basic_block_settings_region']['limit'] = '0';
-  /* Contextual filter:  Content: Menu Item:mlid (Cascading) */
+  /* Contextual filter:  Content: Menu Item:mlid (Cascading)  */
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['id'] = 'field_basic_block_menu_item_mlid';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['table'] = 'field_data_field_basic_block_menu_item';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['field'] = 'field_basic_block_menu_item_mlid';
-  $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['ui_name'] = ' Content: Menu Item:mlid (Cascading)';
+  $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['ui_name'] = ' Content: Menu Item:mlid (Cascading) ';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['default_argument_type'] = 'menu_block_placement_mlid';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['summary']['number_of_records'] = '0';
@@ -66,23 +131,29 @@ function feature_basic_content_views_default_views() {
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['limit'] = '0';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid']['break_phrase'] = TRUE;
-  /* Contextual filter:  Content: Menu Item:mlid (Per Path) */
+  /* Contextual filter: Content: Menu Item:mlid (Per Path) */
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['id'] = 'field_basic_block_menu_item_mlid_1';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['table'] = 'field_data_field_basic_block_menu_item';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['field'] = 'field_basic_block_menu_item_mlid';
-  $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['ui_name'] = ' Content: Menu Item:mlid (Per Path)';
+  $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['ui_name'] = 'Content: Menu Item:mlid (Per Path)';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['default_action'] = 'default';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['default_argument_type'] = 'menu_block_placement_mlid_per_node';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_basic_block_menu_item_mlid_1']['limit'] = '0';
+  $handler->display->display_options['filter_groups']['operator'] = 'OR';
   /* Filter criterion: Content: Block Settings (field_basic_block_settings:individual_pages) */
-  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages']['id'] = 'field_basic_block_settings_individual_pages';
-  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages']['table'] = 'field_data_field_basic_block_settings';
-  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages']['field'] = 'field_basic_block_settings_individual_pages';
-  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages']['value']['value'] = '1';
-  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages']['group'] = 1;
+  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages_1']['id'] = 'field_basic_block_settings_individual_pages_1';
+  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages_1']['table'] = 'field_data_field_basic_block_settings';
+  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages_1']['field'] = 'field_basic_block_settings_individual_pages';
+  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages_1']['value']['value'] = '1';
+  $handler->display->display_options['filters']['field_basic_block_settings_individual_pages_1']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -90,17 +161,21 @@ function feature_basic_content_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'basic_block' => 'basic_block',
   );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
 
   /* Display: Display */
   $handler = $view->new_display('block', 'Display', 'block');
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Draggableviews: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'draggable_views:block_1';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
 
   /* Display: Sort */
   $handler = $view->new_display('block', 'Sort', 'block_1');
@@ -178,6 +253,17 @@ function feature_basic_content_views_default_views() {
   $handler->display->display_options['fields']['draggableviews']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['draggableviews']['draggableviews']['ajax'] = 0;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Draggableviews: Weight */
+  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
+  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'self';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   $export['draggable_views'] = $view;
 
   return $export;

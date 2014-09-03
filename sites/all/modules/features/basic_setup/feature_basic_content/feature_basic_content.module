@@ -21,6 +21,55 @@ function feature_basic_content_views_query_alter(&$view, &$query) {
     $query->where[2]['conditions'][] = $query->where[0]['conditions'][1];
 
     unset($query->where[0]);
-    $query->group_operator = 'OR';
+  }
+}
+
+/*
+ * Implements hook_flush_caches().
+ */
+function feature_basic_content_flush_caches() {
+  //reset available regions
+  _menu_block_placement_regions();
+  $regions = variable_get('menu_block_placement_regions');
+  $quicktabs = new stdClass();
+  $context = new stdClass();
+
+  //exporeted quicktabs and context
+  include('includes/quicktabs.inc');
+  include('includes/context.inc');
+
+  //deletes a context and quicktabs if the region has been disabled within the theme
+  foreach(quicktabs_block_info() as $key => $value){
+    if(substr($key, 0, 15) == 'draggable_views' && !array_key_exists(substr($key, 16), $regions)){
+      quicktabs_delete($key);
+    }
+  }
+  foreach(context_load() as $key => $object){
+    if(substr($key, 0, 15) == 'draggable_views' && !array_key_exists(substr($key, 16), $regions)){
+      context_delete(context_load($key));
+    }
+  }
+  
+  //quicktabs and context for enabled regions.
+  foreach ($regions as $key => $label) {
+    //creates the quicktabs instance for the needed region
+    $quicktabs->machine_name = 'draggable_views_' . $key;
+    $quicktabs->title = 'Draggable Views ' . $label;
+    $quicktabs->tabs[0]['args'] = $key;
+    $quicktabs->tabs[1]['args'] = $key;
+    quicktabs_save($quicktabs);
+
+    //creates the context needed for the quicktabs created above.
+    $context->name = 'draggable_views_' . $key;
+    $context->description = ' Basic Blocks for the \'' . $label . '\' Region';
+    $context->reactions['block']['blocks'] = array(
+      'quicktabs-draggable_views_' . $key => array(
+        'module' => 'quicktabs',
+        'delta' => 'draggable_views_' . $key,
+        'region' => $key,
+        'weight' => '10',
+      ),
+    );
+    context_save($context);
   }
 }

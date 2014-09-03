@@ -22,6 +22,9 @@ function menu_block_placement_field_info() {
   );
 }
 
+/*
+ * Implements hook_field_widget_info().
+ */
 function menu_block_placement_field_widget_info() {
   return array(
     'menu_block_placement_widget' => array(
@@ -31,30 +34,25 @@ function menu_block_placement_field_widget_info() {
   );
 }
 
+/*
+ * Implements hook_flush_caches().
+ */
+function menu_block_placement_flush_caches(){
+  //resets region variables on a cache clear.
+  _menu_block_placement_regions();
+}
+
+/*
+ * Implements hook_field_widget_form().
+ */
 function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  //creates the array for the regions select list
-  $available_regions = array();
-  $path_to_info = drupal_get_path('theme', variable_get('theme_default', NULL)) . '/' . variable_get('theme_default', NULL) . '.info';
-  $theme_settings = drupal_parse_info_file($path_to_info);
-  if (isset($theme_settings['settings']['menu_block_placement'])) {
-    foreach ($theme_settings['settings']['menu_block_placement'] as $key => $value) {
-      if ($value) {
-        $available_regions[$key] = $theme_settings['regions'][$key];
-      }
-    }
-  }
-  //if no block placement regions are labeled in the info file, all regions will be displayed in the dropdown
-  else {
-    if (isset($theme_settings['regions'])) {
-      $available_regions = $theme_settings['regions'];
-    }
-  }
+  $regions = variable_get('menu_block_placement_regions');
 
   //select list for the regions as established in the theme info file
   $element['region'] = array(
     '#type' => 'select',
     '#title' => t('Region'),
-    '#options' => $available_regions,
+    '#options' => $regions,
     '#required' => TRUE,
     '#default_value' => isset($items[0]['region']) ? $items[0]['region'] : '',
   );
@@ -65,36 +63,6 @@ function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $i
     '#default_value' => isset($items[0]['individual_pages']) ? $items[0]['individual_pages'] : '',
   );
   return $element;
-}
-
-
-function menu_block_placement_menu_options($field) {
-  $options = array();
-  if (isset($field["settings"]["default_menus"])) {
-    $default_menus = $field["settings"]["default_menus"];
-  }
-  else {
-    return FALSE;
-  }
-  foreach ($default_menus as $key => $value) {
-    if ($value === 0) {
-      unset($default_menus[$key]);
-    }
-  }
-
-  $items = menu_parent_options($default_menus, array("mlid" => 0));
-  foreach ($items as $key => $value) {
-    $exploded_key = explode(":", $key);
-    $menu_machine_name = ucwords(str_replace("-", " ", array_shift($exploded_key)));
-    $menu_id = array_pop($exploded_key);
-    if ($menu_id != 0) {
-      $options[$menu_machine_name][$menu_id] = str_replace(array(
-        "<",
-        ">"
-      ), "", $value);
-    }
-  }
-  return $options;
 }
 
 /**
@@ -196,24 +164,6 @@ function menu_block_placement_options_list($field, $instance, $entity_type, $ent
   return $options;
 }
 
-/*function menu_block_placement_field_widget_form_alter(&$element, &$form_state, $context) {
-
-  // Add a css class to widget form elements for all fields of type mytype.
-  if ($context['field']['type'] == 'mytype') {
-    // Be sure not to overwrite existing attributes.
-    $element['#attributes']['class'][] = 'myclass';
-  }
-}*/
-
-/*function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
-  die("hello");
-  $element += array(
-    '#type' => $instance['widget']['type'],
-    '#default_value' => isset($items[$delta]) ? $items[$delta] : '',
-  );
-  return array('value' => $element);
-}*/
-
 /**
  * Implements hook_field_widget_error().
  */
@@ -241,4 +191,47 @@ function menu_block_placement_views_api() {
     'path' => drupal_get_path('module', 'menu_block_placement') . '/includes',
   );
 }
+
+function _menu_block_placement_regions(){
+  //creates the array for the regions select list
+  $available_regions = array();
+  $path_to_info = drupal_get_path('theme', variable_get('theme_default', NULL)) . '/' . variable_get('theme_default', NULL) . '.info';
+  $theme_settings = drupal_parse_info_file($path_to_info);
+  if (isset($theme_settings['settings']['menu_block_placement'])) {
+    foreach ($theme_settings['settings']['menu_block_placement'] as $key => $value) {
+      if ($value) {
+        $available_regions[$key] = $theme_settings['regions'][$key];
+      }
+    }
+  }
+  //if no block placement regions are labeled in the info file, all regions will be displayed in the dropdown
+  else {
+    if (isset($theme_settings['regions'])) {
+      $available_regions = $theme_settings['regions'];
+    }
+  }
+
+  //sets the variable for use in the field.
+  variable_set('menu_block_placement_regions',$available_regions);
+}
+
+
+/*function menu_block_placement_field_widget_form_alter(&$element, &$form_state, $context) {
+
+  // Add a css class to widget form elements for all fields of type mytype.
+  if ($context['field']['type'] == 'mytype') {
+    // Be sure not to overwrite existing attributes.
+    $element['#attributes']['class'][] = 'myclass';
+  }
+}*/
+
+/*function menu_block_placement_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  die("hello");
+  $element += array(
+    '#type' => $instance['widget']['type'],
+    '#default_value' => isset($items[$delta]) ? $items[$delta] : '',
+  );
+  return array('value' => $element);
+}*/
+
 

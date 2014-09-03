@@ -23,3 +23,6 @@ dependencies[] = overlay
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
+
+dependencies[] = feature_basic_config
+dependencies[] = feature_basic_content
