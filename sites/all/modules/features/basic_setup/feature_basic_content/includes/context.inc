@@ -2,7 +2,7 @@
 $context = new stdClass();
 $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
 $context->api_version = 3;
-$context->name = 'draggable_views_content';
+$context->name = 'dragview_content';
 $context->description = 'Basic Blocks for the \'Content\' Region';
 $context->tag = 'Basic Blocks Views';
 $context->conditions = array(

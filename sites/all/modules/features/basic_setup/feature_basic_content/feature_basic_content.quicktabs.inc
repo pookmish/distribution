@@ -13,7 +13,7 @@ function feature_basic_content_quicktabs_default_quicktabs() {
   $quicktabs = new stdClass();
   $quicktabs->disabled = FALSE; /* Edit this to true to make a default quicktabs disabled initially */
   $quicktabs->api_version = 1;
-  $quicktabs->machine_name = 'draggable_views_content';
+  $quicktabs->machine_name = 'dragview_content';
   $quicktabs->ajax = 0;
   $quicktabs->hide_empty_tabs = TRUE;
   $quicktabs->default_tab = 0;
