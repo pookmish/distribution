@@ -4,7 +4,7 @@
  *
  * Perform actions to set up the site for this profile.
  */
-function agency_platform_distribution_install() {
+function ec_distro_install() {
   /*
    * Enable, disable and set active themes
    */
