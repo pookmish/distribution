@@ -46,7 +46,7 @@ function feature_basic_content_quicktabs_default_quicktabs() {
   t('Draggable Views Content');
   t('Sort/Edit');
 
-  $export['draggable_views_content'] = $quicktabs;
+  $export['dragview_content'] = $quicktabs;
 
   return $export;
 }
