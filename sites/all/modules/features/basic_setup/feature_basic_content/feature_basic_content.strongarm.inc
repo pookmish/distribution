@@ -359,6 +359,25 @@ function feature_basic_content_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_basic_slideshow_displays';
+  $strongarm->value = array(
+    'basic_slideshow=block' => 'basic_slideshow=block',
+  );
+  $export['insert_view_basic_slideshow_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_draggable_views_displays';
+  $strongarm->value = array(
+    'draggable_views=block' => 'draggable_views=block',
+    'draggable_views=block_1' => 'draggable_views=block_1',
+  );
+  $export['insert_view_draggable_views_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'insert_view_media_default_displays';
   $strongarm->value = array(
     'media_default=media_browser_1' => 'media_default=media_browser_1',
