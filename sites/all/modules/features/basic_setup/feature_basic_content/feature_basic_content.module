@@ -73,3 +73,14 @@ function feature_basic_content_flush_caches() {
     context_save($context);
   }
 }
+/**
+ * hook_node_delete
+ * 
+ * The draggableviews_hanlder_fieldapi.inc doesn't delete draggable view entries out of its table,
+ * this function cleans out those entries to nodes that don't exist.
+ */
+function feature_basic_content_node_delete($node) {
+  db_delete('draggableviews_structure')
+    ->condition('entity_id', $node->nid)
+    ->execute();
+}
