@@ -1,6 +1,7 @@
 name = Eagle Creek
 distribution_name = "Eagle Creek"
 description = Eagle Creek Software's Custom Distrobution
+exclusive = "1"
 
 ; Core Dependencies
 dependencies[] = block
