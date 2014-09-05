@@ -38,12 +38,15 @@ function feature_basic_content_flush_caches() {
   include('includes/quicktabs.inc');
   include('includes/context.inc');
 
-$all_views = views_get_all_views();
+  //get list of all views
+  $all_views = views_get_all_views();
+  //deletes the view if the view has been changed.
   foreach ($all_views as $key => $view) {
     if (substr($key, 0, 9) == 'dragviews' && $key != 'dragviews_' . variable_get('theme_default', NULL)) {
       views_delete_view($view);
     }
   }
+  //if the view doesn't exist this will create one. This works for new sites and theme changes
   if (!array_key_exists('dragviews_' . variable_get('theme_default', NULL), $all_views)) {
     $view = NULL;
     include('includes/view.inc');
@@ -89,5 +92,17 @@ $all_views = views_get_all_views();
     );
     context_save($context);
   }
-
 }
+
+/**
+ * Implements hook_node_delete()
+ *
+ * The draggableviews_hanlder_fieldapi.inc doesn't delete draggable view entries out of its table,
+ * this function cleans out those entries to nodes that don't exist.
+ */
+function feature_basic_content_node_delete($node) {
+  db_delete('draggableviews_structure')
+    ->condition('entity_id', $node->nid)
+    ->execute();
+}
+
