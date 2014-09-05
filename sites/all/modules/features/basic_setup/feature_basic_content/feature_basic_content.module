@@ -10,7 +10,7 @@ include_once 'feature_basic_content.features.inc';
  * Implements hook_views_query_alter().
  */
 function feature_basic_content_views_query_alter(&$view, &$query) {
-  if ($view->name == 'draggable_views') {
+  if ($view->name == 'dragviews_' . variable_get('theme_default', NULL)) {
     $query->where[] = $query->where[1];
     $query->where[2]['conditions'][0]['value'] = '0';
 
@@ -31,32 +31,49 @@ function feature_basic_content_flush_caches() {
   //reset available regions
   _menu_block_placement_regions();
   $regions = variable_get('menu_block_placement_regions');
-  $quicktabs = new stdClass();
-  $context = new stdClass();
+  $quicktabs = NULL;
+  $context = NULL;
 
   //exporeted quicktabs and context
   include('includes/quicktabs.inc');
   include('includes/context.inc');
 
+$all_views = views_get_all_views();
+  foreach ($all_views as $key => $view) {
+    if (substr($key, 0, 9) == 'dragviews' && $key != 'dragviews_' . variable_get('theme_default', NULL)) {
+      views_delete_view($view);
+    }
+  }
+  if (!array_key_exists('dragviews_' . variable_get('theme_default', NULL), $all_views)) {
+    $view = NULL;
+    include('includes/view.inc');
+    $view->name = 'dragviews_' . variable_get('theme_default', NULL);
+    $view->display['block']->display_options['sorts']['weight']['draggableviews_setting_view'] = 'dragviews_' . variable_get('theme_default', NULL) . ':block_1';
+    views_save_view($view);
+  }
+
+
   //deletes a context and quicktabs if the region has been disabled within the theme
-  foreach(quicktabs_block_info() as $key => $value){
-    if(substr($key, 0, 8) == 'dragview' && !array_key_exists(substr($key, 9), $regions)){
+  foreach (quicktabs_block_info() as $key => $value) {
+    if (substr($key, 0, 8) == 'dragview' && !array_key_exists(substr($key, 9), $regions)) {
       quicktabs_delete($key);
     }
   }
-  foreach(context_load() as $key => $object){
-    if(substr($key, 0, 8) == 'dragview' && !array_key_exists(substr($key, 9), $regions)){
+  foreach (context_load() as $key => $object) {
+    if (substr($key, 0, 8) == 'dragview' && !array_key_exists(substr($key, 9), $regions)) {
       context_delete(context_load($key));
     }
   }
-  
+
   //quicktabs and context for enabled regions.
   foreach ($regions as $key => $label) {
     //creates the quicktabs instance for the needed region
     $quicktabs->machine_name = 'dragview_' . $key;
     $quicktabs->title = 'Draggable Views ' . $label;
     $quicktabs->tabs[0]['args'] = $key;
+    $quicktabs->tabs[0]['vid'] = 'dragviews_' . variable_get('theme_default', NULL);
     $quicktabs->tabs[1]['args'] = $key;
+    $quicktabs->tabs[1]['vid'] = 'dragviews_' . variable_get('theme_default', NULL);
     quicktabs_save($quicktabs);
 
     //creates the context needed for the quicktabs created above.
@@ -72,4 +89,5 @@ function feature_basic_content_flush_caches() {
     );
     context_save($context);
   }
+
 }
