@@ -30,6 +30,38 @@ function feature_basic_content_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function feature_basic_content_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: slideshow_image.
+  $styles['slideshow_image'] = array(
+    'name' => 'slideshow_image',
+    'label' => 'Slideshow Image',
+    'effects' => array(
+      1 => array(
+        'label' => 'Scale and crop',
+        'help' => 'Scale and crop will maintain the aspect-ratio of the original image, then crop the larger dimension. This is most useful for creating perfectly square thumbnails without stretching the image.',
+        'effect callback' => 'image_scale_and_crop_effect',
+        'dimensions callback' => 'image_resize_dimensions',
+        'form callback' => 'image_resize_form',
+        'summary theme' => 'image_resize_summary',
+        'module' => 'image',
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 960,
+          'height' => 360,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function feature_basic_content_node_info() {

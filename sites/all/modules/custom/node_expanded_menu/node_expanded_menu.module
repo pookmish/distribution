@@ -17,7 +17,7 @@ function node_expanded_menu_form_node_form_alter(&$form, &$form_status) {
     $desctiption = t('If selected and this menu link has children, the menu will always appear expanded.');
     $form['menu']['link']['expanded']['#description'] = t($desctiption);
     if (isset($form['nid']) && is_null($form['nid']['#value'])) {
-      $form['menu']['link']['expanded']['#default_value'] = 1;
+      $form['menu']['link']['expanded']['#default_value'] = 0;
     }
     else {
       $form['menu']['link']['expanded']['#default_value'] = $form['menu']['link']['expanded']['#value'];
