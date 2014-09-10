@@ -1,7 +1,7 @@
 <?php
 $view = new view();
 $view->name = 'draggable_views';
-$view->description = '';
+$view->description = 'Display and Sort/Edit displays for use with basic content type';
 $view->tag = 'default';
 $view->base_table = 'node';
 $view->human_name = 'Draggable Views';

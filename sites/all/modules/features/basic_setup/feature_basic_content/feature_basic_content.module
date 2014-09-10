@@ -105,4 +105,3 @@ function feature_basic_content_node_delete($node) {
     ->condition('entity_id', $node->nid)
     ->execute();
 }
-
