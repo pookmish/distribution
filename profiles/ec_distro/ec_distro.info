@@ -1,6 +1,7 @@
 name = Eagle Creek
 distribution_name = "Eagle Creek"
 description = Eagle Creek Software's Custom Distrobution
+core = 7.x
 exclusive = "1"
 
 ; Core Dependencies

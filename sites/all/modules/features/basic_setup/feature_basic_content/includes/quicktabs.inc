@@ -27,4 +27,6 @@ $quicktabs->tabs = array(
 );
 $quicktabs->renderer = 'quicktabs';
 $quicktabs->style = 'Zen';
-$quicktabs->options = array();
+$quicktabs->options = array(
+  'do_not_log_no_content' => 1,
+);

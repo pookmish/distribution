@@ -38,7 +38,9 @@ function feature_basic_content_quicktabs_default_quicktabs() {
   );
   $quicktabs->renderer = 'quicktabs';
   $quicktabs->style = 'Zen';
-  $quicktabs->options = array();
+  $quicktabs->options = array(
+  'do_not_log_no_content' => 1,
+  );
 
   // Translatables
   // Included for use with string extractors like potx.

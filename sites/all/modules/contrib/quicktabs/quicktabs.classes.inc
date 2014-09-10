@@ -75,7 +75,9 @@ class QuickSet {
         $qs = new self($name, $contents, $settings);
       }
       catch (InvalidQuickSetException $e) {
-        watchdog('Quicktabs', $e->getMessage());
+        if (!(array_key_exists('do_not_log_no_content', $settings['options']) && $settings['options']['do_not_log_no_content'] && $e->getMessage() == InvalidQuickSetException::NO_CONTENT)) {
+          watchdog('Quicktabs', $e->getMessage());
+        }
         return NULL;
       }
       return new $class($qs);
@@ -118,7 +120,7 @@ class QuickSet {
       'hide_empty_tabs' => 0,
       'ajax' => 0,
       'default_tab' => 0,
-      'options' => array(),
+      'options' => array('do_not_log_no_content' => 0,),
     );
   }
   
@@ -181,7 +183,7 @@ class QuickSet {
    */
   protected function prepareContents() {
     if (!count($this->contents))  {
-      throw new InvalidQuickSetException('There are no contents to render.');
+      throw new InvalidQuickSetException(InvalidQuickSetException::NO_CONTENT);
     }
     if ($this->settings['hide_empty_tabs'] && !$this->settings['ajax']) {
       // Check if any tabs need to be hidden because of empty content.
@@ -203,7 +205,7 @@ class QuickSet {
         }
       }
       if (!$renderable_contents)  {
-        throw new InvalidQuickSetException('There are no contents to render.');
+        throw new InvalidQuickSetException(InvalidQuickSetException::NO_CONTENT);
       }
     }
     elseif ($this->settings['ajax']) {
@@ -512,5 +514,5 @@ class QuickPreRenderedContent implements QuickContentRenderable {
  * Create our own exception class.
  */
 class InvalidQuickSetException extends Exception {
-  
+  const NO_CONTENT = 'There are no contents to render.';
 }
