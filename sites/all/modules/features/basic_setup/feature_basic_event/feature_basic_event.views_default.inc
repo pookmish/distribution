@@ -48,7 +48,7 @@ function feature_basic_event_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
-  /* Field: Content: Date/Time */
+  /* Field: Content: Date & Time */
   $handler->display->display_options['fields']['field_basic_event_date_time']['id'] = 'field_basic_event_date_time';
   $handler->display->display_options['fields']['field_basic_event_date_time']['table'] = 'field_data_field_basic_event_date_time';
   $handler->display->display_options['fields']['field_basic_event_date_time']['field'] = 'field_basic_event_date_time';
@@ -65,7 +65,7 @@ function feature_basic_event_views_default_views() {
   );
   $handler->display->display_options['fields']['field_basic_event_date_time']['group_rows'] = FALSE;
   $handler->display->display_options['fields']['field_basic_event_date_time']['delta_offset'] = '0';
-  /* Sort criterion: Content: Date/Time -  start date (field_basic_event_date_time) */
+  /* Sort criterion: Content: Date &amp; Time -  start date (field_basic_event_date_time) */
   $handler->display->display_options['sorts']['field_basic_event_date_time_value']['id'] = 'field_basic_event_date_time_value';
   $handler->display->display_options['sorts']['field_basic_event_date_time_value']['table'] = 'field_data_field_basic_event_date_time';
   $handler->display->display_options['sorts']['field_basic_event_date_time_value']['field'] = 'field_basic_event_date_time_value';
@@ -206,7 +206,7 @@ function feature_basic_event_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['hide_alter_empty'] = FALSE;
-  /* Field: Content: Date/Time */
+  /* Field: Content: Date & Time */
   $handler->display->display_options['fields']['field_basic_event_date_time']['id'] = 'field_basic_event_date_time';
   $handler->display->display_options['fields']['field_basic_event_date_time']['table'] = 'field_data_field_basic_event_date_time';
   $handler->display->display_options['fields']['field_basic_event_date_time']['field'] = 'field_basic_event_date_time';

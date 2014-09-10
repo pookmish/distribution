@@ -22,7 +22,7 @@ function feature_basic_event_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -64,15 +64,15 @@ function feature_basic_event_field_default_field_instances() {
         'label' => 'above',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'simple_date',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
-          'show_repeat_rule' => 'show',
+          'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -83,8 +83,8 @@ function feature_basic_event_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_basic_event_date_time',
-    'label' => 'Date/Time',
-    'required' => 0,
+    'label' => 'Date & Time',
+    'required' => 1,
     'settings' => array(
       'default_value' => 'now',
       'default_value2' => 'same',
@@ -96,7 +96,7 @@ function feature_basic_event_field_default_field_instances() {
       'active' => 1,
       'module' => 'date',
       'settings' => array(
-        'display_all_day' => 0,
+        'display_all_day' => 1,
         'increment' => 1,
         'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
@@ -113,7 +113,7 @@ function feature_basic_event_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
-  t('Date/Time');
+  t('Date & Time');
 
   return $field_instances;
 }
