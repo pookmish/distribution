@@ -1,6 +1,6 @@
 <?php
 $view = new view();
-$view->name = 'draggable_views';
+$view->name = 'dragviews_bartik';
 $view->description = 'Display and Sort/Edit displays for use with basic content type';
 $view->tag = 'default';
 $view->base_table = 'node';
@@ -11,6 +11,7 @@ $view->disabled = FALSE; /* Edit this to true to make a default view disabled in
 
 /* Display: Master */
 $handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['use_ajax'] = TRUE;
 $handler->display->display_options['use_more_always'] = FALSE;
 $handler->display->display_options['access']['type'] = 'perm';
 $handler->display->display_options['cache']['type'] = 'none';
@@ -93,7 +94,7 @@ $handler->display->display_options['defaults']['sorts'] = FALSE;
 $handler->display->display_options['sorts']['weight']['id'] = 'weight';
 $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
 $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-$handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'draggable_views:block_1';
+$handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'dragviews_bartik:block_1';
 $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
 /* Sort criterion: Content: Post date */
 $handler->display->display_options['sorts']['created']['id'] = 'created';
