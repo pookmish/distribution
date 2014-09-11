@@ -107,6 +107,7 @@ features[variable][] = node_submitted_basic_slideshow
 features[variable][] = pathauto_node_basic_block_pattern
 features[variable][] = pathauto_node_basic_page_pattern
 features[variable][] = pathauto_node_basic_slideshow_pattern
+features[views_view][] = draggable_views
 features_exclude[dependencies][az_sliver] = az_sliver
 features_exclude[dependencies][feature_related_content] = feature_related_content
 features_exclude[variable][node_options_basic_block] = node_options_basic_block
