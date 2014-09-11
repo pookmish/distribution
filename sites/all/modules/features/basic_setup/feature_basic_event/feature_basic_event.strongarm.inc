@@ -139,15 +139,6 @@ function feature_basic_event_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_basic_event';
-  $strongarm->value = array(
-    0 => 'status',
-  );
-  $export['node_options_basic_event'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_basic_event';
   $strongarm->value = '1';
   $export['node_preview_basic_event'] = $strongarm;
