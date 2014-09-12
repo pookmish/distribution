@@ -239,17 +239,10 @@ function _quicktabs_admin_main_form($form_state, &$qt) {
     '#weight' => -4,
   );
 
-  $form['do_not_log_no_content'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Do not log errors for empty quicktabs'),
-    '#default_value' => isset($qt->options['do_not_log_no_content']) ? $qt->options['do_not_log_no_content'] : 0,
-    '#description' => t('When there are empty views in a quicktab, an error is thrown. This prevent that error from being sent to Watchdog.'),
-    '#weight' => -3,
-  );
   // Add a wrapper for the tabs and Add Another Tab button.
   $form['qt_wrapper'] = array(
     '#tree' => FALSE,
-    '#weight' => -2,
+    '#weight' => -3,
     '#prefix' => '<div class="clear-block" id="quicktabs-tabs-wrapper">',
     '#suffix' => '</div>',
   );
@@ -653,7 +646,6 @@ function _quicktabs_convert_form_to_quicktabs($form_state) {
   $qt->style = $form_state['values']['style'];
   $qt->tabs = $formvalues_tabs;
   $qt->options = isset($form_state['values']['options'][$renderer]) ? $form_state['values']['options'][$renderer] : array();
-  $qt->options['do_not_log_no_content'] = $form_state['values']['do_not_log_no_content'];
 
   if (isset($form_state['values']['machine_name'])) {
     $qt->machine_name = $form_state['values']['machine_name'];
