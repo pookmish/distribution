@@ -198,6 +198,46 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
+  // Exported field_instance: 'node-webform-field_content_section'
+  $field_instances['node-webform-field_content_section'] = array(
+    'bundle' => 'webform',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_content_section',
+    'label' => 'Content Section',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => -99,
+    ),
+    'workbench_access_field' => 1,
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Content Section');
