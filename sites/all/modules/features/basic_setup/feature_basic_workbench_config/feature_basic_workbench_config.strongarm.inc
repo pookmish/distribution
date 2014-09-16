@@ -68,6 +68,41 @@ function feature_basic_workbench_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'node_revision_delete_number_basic_block';
+  $strongarm->value = '20';
+  $export['node_revision_delete_number_basic_block'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_revision_delete_number_basic_event';
+  $strongarm->value = '20';
+  $export['node_revision_delete_number_basic_event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_revision_delete_number_basic_page';
+  $strongarm->value = '20';
+  $export['node_revision_delete_number_basic_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_revision_delete_number_basic_slideshow';
+  $strongarm->value = '20';
+  $export['node_revision_delete_number_basic_slideshow'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_revision_delete_number_expandable_page';
+  $strongarm->value = '20';
+  $export['node_revision_delete_number_expandable_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access';
   $strongarm->value = 'taxonomy';
   $export['workbench_access'] = $strongarm;

@@ -63,6 +63,8 @@ function feature_basic_config_wysiwyg_default_profiles() {
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
       'simple_source_formatting' => 0,
+      'acf_mode' => 0,
+      'acf_allowed_content' => '',
       'css_setting' => 'self',
       'css_path' => '%b%t/css/wysiwyg.css',
       'stylesSet' => 'Heading 1 = h1

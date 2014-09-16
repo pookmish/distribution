@@ -292,7 +292,42 @@ function feature_basic_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_file__video';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'preview' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
+    'extra_fields' => array(
+      'form' => array(),
+      'display' => array(
+        'file' => array(
+          'default' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
+    ),
+  );
   $export['field_bundle_settings_file__video'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -307,10 +342,9 @@ function feature_basic_config_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'media_wysiwyg_wysiwyg_allowed_types';
   $strongarm->value = array(
-    0 => 'image',
-    1 => 'video',
-    2 => 'audio',
-    3 => 'document',
+    0 => 'video',
+    1 => 'image',
+    2 => 'document',
   );
   $export['media_wysiwyg_wysiwyg_allowed_types'] = $strongarm;
 
@@ -322,6 +356,7 @@ function feature_basic_config_strongarm() {
     0 => 'upload',
     1 => 'media_default--media_browser_1',
     2 => 'media_default--media_browser_my_files',
+    3 => 'media_internet',
   );
   $export['media_wysiwyg_wysiwyg_browser_plugins'] = $strongarm;
 
