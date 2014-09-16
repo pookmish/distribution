@@ -13,13 +13,13 @@
  */
 function theme_media_displays_download_file_alt($variables) {
   $output = '';
-
   foreach ($variables['items'] as $delta => $item) {
     if (!empty($item)) {
       $output .= theme('media_displays_download_alt_item',
         array('file' => (object) $item));
     }
   }
+  $output = '<span class="media-display-download">' . $output . '</span>';
   return $output;
 }
 
