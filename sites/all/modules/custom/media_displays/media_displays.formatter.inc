@@ -19,10 +19,9 @@ function theme_media_displays_download_file_alt($variables) {
         array('file' => (object) $item));
     }
   }
-  $output = '<span class="media-display-download">' . $output . '</span>';
+  //$output = '<span class="media-display-download">' . $output . '</span>';
   return $output;
 }
-
 
 /**
  * Theme function for the 'direct_download' multiple file formatter.

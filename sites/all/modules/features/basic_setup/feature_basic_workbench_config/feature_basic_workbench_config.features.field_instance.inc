@@ -19,10 +19,9 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 4,
+        'type' => 'hidden',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -53,9 +52,8 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -93,9 +91,8 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -133,10 +130,9 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 2,
+        'type' => 'hidden',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -167,9 +163,8 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 2,
       ),
       'teaser' => array(
