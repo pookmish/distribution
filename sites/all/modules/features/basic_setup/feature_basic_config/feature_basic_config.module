@@ -5,7 +5,3 @@
  */
 
 include_once 'feature_basic_config.features.inc';
-
-function feature_basic_config_init() {
-  drupal_add_css('.media-list-thumbnails .form-type-checkbox {top:0;}', 'inline');
-}
