@@ -210,21 +210,7 @@
  *   );
  * @endcode
  */
-$databases = array (
-  'default' => 
-  array (
-    'default' => 
-    array (
-      'database' => 'ec-distro',
-      'username' => 'root',
-      'password' => '',
-      'host' => 'localhost',
-      'port' => '',
-      'driver' => 'mysql',
-      'prefix' => '',
-    ),
-  ),
-);
+$databases = array();
 
 /**
  * Access control for update.php script.
@@ -256,7 +242,7 @@ $update_free_access = FALSE;
  *   $drupal_hash_salt = file_get_contents('/home/example/salt.txt');
  *
  */
-$drupal_hash_salt = 'xR0FnK_YIXZIOTYd0dDDT1mhJ2cznBmHzZ5CfLPNW3w';
+$drupal_hash_salt = '';
 
 /**
  * Base URL (optional).
@@ -279,6 +265,21 @@ $drupal_hash_salt = 'xR0FnK_YIXZIOTYd0dDDT1mhJ2cznBmHzZ5CfLPNW3w';
  * for you.
  */
 # $base_url = 'http://www.example.com';  // NO trailing slash!
+
+if (isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
+  switch ($_SERVER['PANTHEON_ENVIRONMENT']) {
+    case 'dev':
+      //$base_url = 'http://dev-sitename.gotpantheon.com'; // NO trailing slash!
+      break;
+    case 'test':
+      //$baseurl = 'http://test-sitename.gotpantheon.com'; // NO trailing slash!
+      break;
+    case 'live':
+      //$baseurl = 'http://www.domain.tld'; // NO trailing slash!
+      break;
+  }
+}
+
 
 /**
  * PHP settings:
