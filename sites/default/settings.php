@@ -266,20 +266,6 @@ $drupal_hash_salt = '';
  */
 # $base_url = 'http://www.example.com';  // NO trailing slash!
 
-if (isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
-  switch ($_SERVER['PANTHEON_ENVIRONMENT']) {
-    case 'dev':
-      //$base_url = 'http://dev-sitename.gotpantheon.com'; // NO trailing slash!
-      break;
-    case 'test':
-      //$baseurl = 'http://test-sitename.gotpantheon.com'; // NO trailing slash!
-      break;
-    case 'live':
-      //$baseurl = 'http://www.domain.tld'; // NO trailing slash!
-      break;
-  }
-}
-
 
 /**
  * PHP settings:
@@ -576,3 +562,24 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  */
 # $conf['pressflow_smart_start'] = TRUE;
 
+if (isset($_SERVER['PANTHEON_ENVIRONMENT'])) {
+  switch ($_SERVER['PANTHEON_ENVIRONMENT']) {
+    case 'dev':
+      //$base_url = 'http://dev-sitename.gotpantheon.com'; // NO trailing slash!
+      break;
+    case 'test':
+      //$baseurl = 'http://test-sitename.gotpantheon.com'; // NO trailing slash!
+      $conf['preprocess_css'] = 1;
+      $conf['preprocess_js'] = 1;
+      $conf['block_cache'] = 1;
+      $conf['cache'] = 1;
+      break;
+    case 'live':
+      //$baseurl = 'http://www.domain.tld'; // NO trailing slash!
+      $conf['preprocess_css'] = 1;
+      $conf['preprocess_js'] = 1;
+      $conf['block_cache'] = 1;
+      $conf['cache'] = 1;
+      break;
+  }
+}
