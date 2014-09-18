@@ -342,8 +342,8 @@ function feature_basic_config_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'media_wysiwyg_wysiwyg_allowed_types';
   $strongarm->value = array(
-    0 => 'video',
-    1 => 'image',
+    0 => 'image',
+    1 => 'video',
     2 => 'document',
   );
   $export['media_wysiwyg_wysiwyg_allowed_types'] = $strongarm;
@@ -357,6 +357,7 @@ function feature_basic_config_strongarm() {
     1 => 'media_default--media_browser_1',
     2 => 'media_default--media_browser_my_files',
     3 => 'media_internet',
+    4 => 'remote_file',
   );
   $export['media_wysiwyg_wysiwyg_browser_plugins'] = $strongarm;
 
