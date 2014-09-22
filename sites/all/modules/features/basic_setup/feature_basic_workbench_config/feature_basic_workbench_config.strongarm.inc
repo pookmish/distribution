@@ -118,7 +118,7 @@ function feature_basic_workbench_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_auto_assign';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['workbench_access_auto_assign'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -140,6 +140,7 @@ function feature_basic_workbench_config_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_menu';
   $strongarm->value = array(
+    'devel' => 0,
     'main-menu' => 0,
     'management' => 0,
     'navigation' => 0,
@@ -158,35 +159,35 @@ function feature_basic_workbench_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_basic_block';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_basic_block'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_basic_event';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_basic_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_basic_page';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_basic_page'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_basic_slideshow';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_basic_slideshow'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_expandable_page';
-  $strongarm->value = 0;
+  $strongarm->value = 1;
   $export['workbench_access_node_type_expandable_page'] = $strongarm;
 
   $strongarm = new stdClass();

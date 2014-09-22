@@ -104,6 +104,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_content_section',
+    'is_property' => 0,
     'label' => 'Content Section',
     'required' => 1,
     'settings' => array(
