@@ -18,12 +18,12 @@ function feature_basic_config_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
-      'media_filter' => array(
+      'insert_view' => array(
         'weight' => -50,
         'status' => 1,
         'settings' => array(),
       ),
-      'insert_view' => array(
+      'media_filter' => array(
         'weight' => -49,
         'status' => 1,
         'settings' => array(),

@@ -69,6 +69,7 @@ $info = array(
   // Preview files.
   'preview_css' => 'color/preview.css',
   'preview_html' => 'color/preview.html',
+  'preview_js' => 'color/preview.js',
   
   // Base file for image generation.
   'base_image' => 'color/base.png',
