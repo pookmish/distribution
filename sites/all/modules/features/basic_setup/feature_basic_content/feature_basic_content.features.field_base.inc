@@ -19,14 +19,6 @@ function feature_basic_content_field_default_field_bases() {
       0 => 'node',
     ),
     'field_name' => 'body',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -46,7 +38,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_available_views',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'insert_view_gen',
@@ -55,58 +46,94 @@ function feature_basic_content_field_default_field_bases() {
     'type' => 'insert_view_generator',
   );
 
-  // Exported field_base: 'field_basic_block_menu_item'
-  $field_bases['field_basic_block_menu_item'] = array(
+  // Exported field_base: 'field_basic_block_settings'
+  $field_bases['field_basic_block_settings'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_basic_block_menu_item',
-    'foreign keys' => array(),
+    'field_name' => 'field_basic_block_settings',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'menu_block_placement',
     'settings' => array(
       'default_menus' => array(
+        0 => 0,
         'devel' => 0,
-        'features' => 0,
         'main-menu' => 'main-menu',
         'management' => 0,
-        'menu-footer-nav' => 0,
-        'menu-sticky-nav' => 0,
         'navigation' => 0,
         'user-menu' => 0,
+      ),
+      'default_selects' => array(
+        'individ' => 'individ',
+        'region' => 'region',
       ),
     ),
     'translatable' => 0,
     'type' => 'menu_block_placement_reference',
   );
 
-  // Exported field_base: 'field_basic_block_settings'
-  $field_bases['field_basic_block_settings'] = array(
+  // Exported field_base: 'field_basic_page_tab_body'
+  $field_bases['field_basic_page_tab_body'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_basic_block_settings',
-    'foreign keys' => array(),
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'menu_block_placement',
-    'settings' => array(
-      'default_menus' => array(
-        'devel' => 0,
-        'features' => 0,
-        'main-menu' => 'main-menu',
-        'management' => 0,
-        'menu-footer-nav' => 0,
-        'menu-sticky-nav' => 0,
-        'navigation' => 0,
-        'user-menu' => 0,
+    'field_name' => 'field_basic_page_tab_body',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
       ),
     ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(),
     'translatable' => 0,
-    'type' => 'menu_block_placement_reference',
+    'type' => 'text_long',
+  );
+
+  // Exported field_base: 'field_basic_page_tab_label'
+  $field_bases['field_basic_page_tab_label'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_basic_page_tab_label',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 50,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_basic_page_tabs'
+  $field_bases['field_basic_page_tabs'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_basic_page_tabs',
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_basic_slideshow_assignment'
@@ -116,7 +143,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_basic_slideshow_assignment',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'menu_block_placement',
@@ -131,6 +157,10 @@ function feature_basic_content_field_default_field_bases() {
         'navigation' => 0,
         'user-menu' => 0,
       ),
+      'default_selects' => array(
+        'individ' => 0,
+        'region' => 0,
+      ),
     ),
     'translatable' => 0,
     'type' => 'menu_block_placement_reference',
@@ -143,14 +173,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_basic_slideshow_caption',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -170,7 +192,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_basic_slideshow_images',
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
@@ -193,14 +214,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_slideshow_image',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
     'indexes' => array(
       'fid' => array(
         0 => 'fid',
@@ -223,7 +236,6 @@ function feature_basic_content_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_slideshow_image_link',
-    'foreign keys' => array(),
     'indexes' => array(),
     'locked' => 0,
     'module' => 'link',

@@ -28,21 +28,21 @@ function feature_basic_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_jquery_selector';
-  $strongarm->value = 'select:visible';
+  $strongarm->value = 'select';
   $export['chosen_jquery_selector'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_minimum_multiple';
-  $strongarm->value = '5';
+  $strongarm->value = '2';
   $export['chosen_minimum_multiple'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'chosen_minimum_single';
-  $strongarm->value = '5';
+  $strongarm->value = '0';
   $export['chosen_minimum_single'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -93,6 +93,66 @@ function feature_basic_config_strongarm() {
   $strongarm->name = 'colorbox_load';
   $strongarm->value = 1;
   $export['colorbox_load'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'default_environment_indicator_environment';
+  $strongarm->value = array(
+    'default_environment' => TRUE,
+  );
+  $export['default_environment_indicator_environment'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_view_modes';
+  $strongarm->value = array(
+    'file' => array(
+      'colorbox' => array(
+        'label' => 'Colorbox',
+        'custom settings' => 1,
+      ),
+      'medium_image' => array(
+        'label' => 'Medium Image',
+        'custom settings' => 1,
+      ),
+      'large_image' => array(
+        'label' => 'Large Image',
+        'custom settings' => 1,
+      ),
+      'original_image' => array(
+        'label' => 'Original Image',
+        'custom settings' => 1,
+      ),
+    ),
+  );
+  $export['entity_view_modes'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'environment_indicator_git_support';
+  $strongarm->value = 0;
+  $export['environment_indicator_git_support'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'environment_indicator_integration';
+  $strongarm->value = array(
+    'toolbar' => 0,
+    'admin_menu' => 0,
+    'navbar' => 0,
+  );
+  $export['environment_indicator_integration'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'environment_indicator_suppress_pages';
+  $strongarm->value = '';
+  $export['environment_indicator_suppress_pages'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -169,7 +229,20 @@ function feature_basic_config_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_file__audio';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'colorbox' => array(
+        'custom_settings' => FALSE,
+      ),
+      'medium_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'large_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'original_image' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(),
       'display' => array(),
@@ -190,7 +263,7 @@ function feature_basic_config_strongarm() {
         'custom_settings' => FALSE,
       ),
       'preview' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -202,6 +275,18 @@ function feature_basic_config_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'colorbox' => array(
+        'custom_settings' => FALSE,
+      ),
+      'medium_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'large_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'original_image' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -228,6 +313,10 @@ function feature_basic_config_strongarm() {
             'weight' => '0',
             'visible' => TRUE,
           ),
+          'file_link' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
         ),
       ),
     ),
@@ -241,13 +330,13 @@ function feature_basic_config_strongarm() {
   $strongarm->value = array(
     'view_modes' => array(
       'teaser' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'full' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'preview' => array(
-        'custom_settings' => TRUE,
+        'custom_settings' => FALSE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -260,6 +349,18 @@ function feature_basic_config_strongarm() {
       ),
       'token' => array(
         'custom_settings' => FALSE,
+      ),
+      'colorbox' => array(
+        'custom_settings' => TRUE,
+      ),
+      'medium_image' => array(
+        'custom_settings' => TRUE,
+      ),
+      'large_image' => array(
+        'custom_settings' => TRUE,
+      ),
+      'original_image' => array(
+        'custom_settings' => TRUE,
       ),
     ),
     'extra_fields' => array(
@@ -280,6 +381,26 @@ function feature_basic_config_strongarm() {
           ),
           'preview' => array(
             'weight' => 55,
+            'visible' => TRUE,
+          ),
+          'colorbox' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'small_image' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'medium_image' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'large_image' => array(
+            'weight' => '0',
+            'visible' => TRUE,
+          ),
+          'original_image' => array(
+            'weight' => '0',
             'visible' => TRUE,
           ),
         ),
@@ -315,6 +436,18 @@ function feature_basic_config_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'colorbox' => array(
+        'custom_settings' => FALSE,
+      ),
+      'medium_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'large_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'original_image' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -329,6 +462,53 @@ function feature_basic_config_strongarm() {
     ),
   );
   $export['field_bundle_settings_file__video'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_admin_views_file_displays';
+  $strongarm->value = array(
+    'admin_views_file=system_1' => 'admin_views_file=system_1',
+  );
+  $export['insert_view_admin_views_file_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_admin_views_node_displays';
+  $strongarm->value = array(
+    'admin_views_node=system_1' => 'admin_views_node=system_1',
+  );
+  $export['insert_view_admin_views_node_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_admin_views_user_displays';
+  $strongarm->value = array(
+    'admin_views_user=system_1' => 'admin_views_user=system_1',
+  );
+  $export['insert_view_admin_views_user_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_media_default_displays';
+  $strongarm->value = array(
+    'media_default=media_browser_1' => 'media_default=media_browser_1',
+    'media_default=media_browser_my_files' => 'media_default=media_browser_my_files',
+  );
+  $export['insert_view_media_default_displays'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'insert_view_sitemap_displays';
+  $strongarm->value = array(
+    'sitemap=page' => 'sitemap=page',
+    'sitemap=attachment' => 'sitemap=attachment',
+  );
+  $export['insert_view_sitemap_displays'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -372,7 +552,7 @@ function feature_basic_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_block_1_admin_title';
-  $strongarm->value = 'Menu Block - Main Menu, Level: 2, Depth: 1';
+  $strongarm->value = 'Main Menu: Level  - 2nd; Depth - 1';
   $export['menu_block_1_admin_title'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -420,8 +600,15 @@ function feature_basic_config_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_block_1_title_link';
+  $strongarm->value = 0;
+  $export['menu_block_1_title_link'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_block_2_admin_title';
-  $strongarm->value = 'Menu Block - Main Menu, Level: 3, Depth: 1';
+  $strongarm->value = 'Main Menu: Level  - 3rd; Depth - 1';
   $export['menu_block_2_admin_title'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -465,6 +652,39 @@ function feature_basic_config_strongarm() {
   $strongarm->name = 'menu_block_2_sort';
   $strongarm->value = 0;
   $export['menu_block_2_sort'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_block_2_title_link';
+  $strongarm->value = 0;
+  $export['menu_block_2_title_link'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'search_active_modules';
+  $strongarm->value = array(
+    'search_by_page' => 'search_by_page',
+    'file_entity' => 0,
+    'node' => 0,
+    'user' => 0,
+  );
+  $export['search_active_modules'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'search_by_page_default_environment';
+  $strongarm->value = 1;
+  $export['search_by_page_default_environment'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'search_default_module';
+  $strongarm->value = 'search_by_page';
+  $export['search_default_module'] = $strongarm;
 
   return $export;
 }
