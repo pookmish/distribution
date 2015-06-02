@@ -21,7 +21,7 @@ function feature_basic_config_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'preview' => array(
         'label' => 'above',
@@ -32,7 +32,7 @@ function feature_basic_config_field_default_field_instances() {
     ),
     'entity_type' => 'file',
     'field_name' => 'field_alt_text',
-    'label' => 'Alt Text',
+    'label' => 'Link Text',
     'required' => 1,
     'settings' => array(
       'text_processing' => 0,
@@ -47,6 +47,40 @@ function feature_basic_config_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance: 'file-document-field_document_title'
+  $field_instances['file-document-field_document_title'] = array(
+    'bundle' => 'document',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Title text is used in the tool tip when a user hovers their mouse over the link. Adding title text makes it easier to understand the context of a document and improves usability.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'file',
+    'field_name' => 'field_document_title',
+    'label' => 'Title Text',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+      'wysiwyg_override' => 1,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -3,
     ),
   );
 
@@ -205,8 +239,10 @@ function feature_basic_config_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Alt Text');
   t('Alternative text is used by screen readers, search engines, and when the image cannot be loaded. By adding alt text you improve accessibility and search engine optimization.');
+  t('Link Text');
   t('Title Text');
   t('Title text is used in the tool tip when a user hovers their mouse over the image. Adding title text makes it easier to understand the context of an image and improves usability.');
+  t('Title text is used in the tool tip when a user hovers their mouse over the link. Adding title text makes it easier to understand the context of a document and improves usability.');
 
   return $field_instances;
 }

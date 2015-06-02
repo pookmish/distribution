@@ -514,7 +514,7 @@ function feature_basic_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'jquery_update_jquery_version';
-  $strongarm->value = '1.8';
+  $strongarm->value = '1.9';
   $export['jquery_update_jquery_version'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -659,32 +659,6 @@ function feature_basic_config_strongarm() {
   $strongarm->name = 'menu_block_2_title_link';
   $strongarm->value = 0;
   $export['menu_block_2_title_link'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'search_active_modules';
-  $strongarm->value = array(
-    'search_by_page' => 'search_by_page',
-    'file_entity' => 0,
-    'node' => 0,
-    'user' => 0,
-  );
-  $export['search_active_modules'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'search_by_page_default_environment';
-  $strongarm->value = 1;
-  $export['search_by_page_default_environment'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'search_default_module';
-  $strongarm->value = 'search_by_page';
-  $export['search_default_module'] = $strongarm;
 
   return $export;
 }
