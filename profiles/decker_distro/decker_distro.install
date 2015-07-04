@@ -4,7 +4,7 @@
  *
  * Perform actions to set up the site for this profile.
  */
-function ec_distro_install() {
+function decker_distro_install() {
   // Enable, disable and set active themes
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');

@@ -1,6 +1,6 @@
-name = Eagle Creek
-distribution_name = "Eagle Creek"
-description = Eagle Creek Software's Custom Distribution
+name = Decker Distribution
+distribution_name = "Decker Distribution"
+description = Mike Decker's Custom Distribution
 core = 7.x
 exclusive = "1"
 
