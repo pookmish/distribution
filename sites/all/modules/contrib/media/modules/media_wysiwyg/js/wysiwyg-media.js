@@ -20,7 +20,7 @@ Drupal.wysiwyg.plugins.media = {
    *   A DOM element
    */
   isNode: function(node) {
-    return $(node).is('img.media-element');
+    return $(node).is('img[data-media-element]');
   },
 
   /**
@@ -113,7 +113,7 @@ InsertMedia.prototype = {
     var element = Drupal.media.filter.create_element(formatted_media.html, {
           fid: this.mediaFile.fid,
           view_mode: formatted_media.type,
-          attributes: this.mediaFile.attributes,
+          attributes: formatted_media.options,
           fields: formatted_media.options
         });
     // Get the markup and register it for the macro / placeholder handling.
