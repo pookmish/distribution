@@ -817,7 +817,7 @@ function _ctools_export_unpack_object($schema, $data, $object = 'stdClass') {
   // Go through our schema and build correlations.
   foreach ($schema['fields'] as $field => $info) {
     if (isset($data->$field)) {
-      if (!empty($info['serialize']) && !is_serialized($data->$field)) {
+      if (!empty($info['serialize']) && !_ctools_is_serialized($data->$field)) {
         $data->$field = serialize($data->$field);
       }
       $object->$field = empty($info['serialize']) ? $data->$field : unserialize($data->$field);
