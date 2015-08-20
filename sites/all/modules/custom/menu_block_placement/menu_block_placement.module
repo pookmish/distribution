@@ -415,8 +415,7 @@ function menu_block_placement_flush_caches() {
 function _mbp_regions_set() {
   //creates the array for the regions select list
   $available_regions = array();
-  $path_to_info = drupal_get_path('theme', variable_get('theme_default', NULL)) . '/' . variable_get('theme_default', NULL) . '.info';
-  $theme_settings = drupal_parse_info_file($path_to_info);
+  $theme_settings = system_get_info('theme', variable_get('theme_default', NULL));
   if (isset($theme_settings['settings']['menu_block_placement'])) {
     foreach ($theme_settings['settings']['menu_block_placement'] as $key => $value) {
       if ($value && isset($theme_settings['regions'][$key])) {

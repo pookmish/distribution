@@ -21,11 +21,12 @@ dependencies[] = shortcut
 dependencies[] = field_ui
 dependencies[] = file
 dependencies[] = rdf
+dependencies[] = views_ui
 
 ;dependencies[] = apachesolr
 ;dependencies[] = apachesolr_search
-dependencies[] = pantheon_api
-dependencies[] = pantheon_login
+;dependencies[] = pantheon_api
+;dependencies[] = pantheon_login
 
 
 dependencies[] = feature_basic_config
