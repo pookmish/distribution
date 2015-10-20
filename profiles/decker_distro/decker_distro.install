@@ -9,14 +9,8 @@ function decker_distro_install() {
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
 
-  //Rebuilds all enabled features
-  features_revert();
-
   // ignore any rebuild messages
   node_access_needs_rebuild(FALSE);
-
-  // ignore any other install messages
-  drupal_get_messages();
 
   // Create a default role for site administrators, with all available permissions assigned.
   $role = new stdClass();
