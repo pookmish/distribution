@@ -14,6 +14,8 @@ function vertical_tabs_responsive_uninstall() {
   variable_del('vertical_tabs_responsive_break');
   variable_del('vertical_tabs_responsive_button');
   variable_del('vertical_tabs_responsive_collapsed');
+  variable_del('vertical_tabs_responsive_enabled_on');
   variable_del('vertical_tabs_responsive_path_blacklist');
+  variable_del('vertical_tabs_responsive_path_whitelist');
   variable_del('vertical_tabs_responsive_per_role');
 }

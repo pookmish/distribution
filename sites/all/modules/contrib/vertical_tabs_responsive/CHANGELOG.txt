@@ -1,3 +1,8 @@
+Vertical Tabs Responsive 7.x-1.x-rc1, 2015-Sep-9
+------------------------------------------------
+
+#2509488: Option to enable module on non admin paths and filter via whitelist.
+
 Vertical Tabs Responsive 7.x-1.x-beta10, 2015-Jun-11
 ----------------------------------------------------
 

@@ -30,6 +30,17 @@ function vertical_tabs_responsive_admin_settings($form, &$form_state) {
     '#default_value' => variable_get('vertical_tabs_responsive_collapsed', 0),
   );
 
+  $form['general']['vertical_tabs_responsive_enabled_on'] = array(
+    '#type' => 'select',
+    '#title' => t('Enable module on.'),
+    '#options' => array(
+      0 => t('Admin paths only'),
+      1 => t('Frontend paths only'),
+      2 => t('Admin and frontend paths'),
+    ),
+    '#default_value' => variable_get('vertical_tabs_responsive_enabled_on', 0),
+  );
+
   $form['general']['vertical_tabs_responsive_left'] = array(
     '#type' => 'select',
     '#title' => t('Vertical tabs side.'),
@@ -59,6 +70,15 @@ function vertical_tabs_responsive_admin_settings($form, &$form_state) {
     '#default_value' => variable_get('vertical_tabs_responsive_break', '960'),
     '#required' => TRUE,
     '#field_suffix' => t('px'),
+  );
+
+  $form['general']['vertical_tabs_responsive_path_whitelist'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Whitelist: force this module to be enabled on the following paths'),
+    '#description' => t('One per line. Wildcard-enabled. Examples: admin/structure/features, admin*'),
+    '#rows' => 3,
+    '#cols' => 40,
+    '#default_value' => variable_get('vertical_tabs_responsive_path_whitelist', ''),
   );
 
   $form['restrict'] = array(
