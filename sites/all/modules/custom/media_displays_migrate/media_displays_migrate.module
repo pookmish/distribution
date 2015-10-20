@@ -2,9 +2,9 @@
 /*
  * Implements hook_permission().
  */
-function media_display_migrate_permission() {
+function media_displays_migrate_permission() {
   return array(
-    'administer media display migrate' => array(
+    'administer media displays migrate' => array(
       'title' => t('Administer Media Display Migrate'),
     ),
   );
@@ -13,15 +13,15 @@ function media_display_migrate_permission() {
 /*
  * Implements hook_menu().
  */
-function media_display_migrate_menu() {
+function media_displays_migrate_menu() {
   $items = array();
   $items['admin/config/media/migrate'] = array(
-    'title' => 'Media File Display Migration',
+    'title' => 'Media Displays Migrate',
     'description' => 'Import and export file display settings for Media Module',
     'type' => MENU_NORMAL_ITEM,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('media_migrate_admin'),
-    'access arguments' => array('administer media display migrate'),
+    'access arguments' => array('administer media displays migrate'),
   );
   return $items;
 }
@@ -52,7 +52,7 @@ function media_migrate_admin() {
       '#attributes' => array('onclick' => 'if(!confirm("Replace Existing Display Settings?")){return false;}'),
     );
   }
-  if (file_exists(drupal_get_path('module', 'media_display_migrate') . "/file_display.csv")) {
+  if (file_exists(drupal_get_path('module', 'media_displays_migrate') . "/file_display.csv")) {
     $form['default_displays_container'] = array(
       '#type' => 'fieldset',
       '#title' => t('Import From Module File'),
@@ -89,6 +89,9 @@ function _media_migrate_upload_import() {
       array_push($display, fgetcsv($file));
     }
     fclose($file);
+    db_truncate('file_display')
+      ->execute();
+
     foreach ($display as $row) {
       if ($row[0] != NULL) {
         db_merge('file_display')
@@ -115,19 +118,24 @@ function _media_migrate_upload_import() {
  * populate the database with the display settings from the file within the module
  */
 function _media_migrate_default_import() {
-  if (file_exists(drupal_get_path('module', 'media_display_migrate') . "/file_display.csv")) {
+  if (file_exists(drupal_get_path('module', 'media_displays_migrate') . "/file_display.csv")) {
     $display = array();
 
     //Gets the file
-    $file = fopen(drupal_get_path('module', 'media_display_migrate') . "/file_display.csv", "r");
+    $file = fopen(drupal_get_path('module', 'media_displays_migrate') . "/file_display.csv", "r");
     while (!feof($file)) {
       array_push($display, fgetcsv($file));
     }
     fclose($file);
 
     //inserts/updates each row in the database with the row from the file
+    db_truncate('file_display')->execute();
+    $variables = array();
     foreach ($display as $row) {
       if ($row[0] != NULL) {
+        list($bundle, $view_mode, $item) = explode('__', $row[0]);
+        $variables[$bundle]['view_modes'][$view_mode] = array('custom_settings' => TRUE);
+
         db_merge('file_display')
           ->key(array('name' => $row[0]))
           ->fields(array(
@@ -138,6 +146,21 @@ function _media_migrate_default_import() {
           ))->execute();
       }
     }
+
+    $entity_info = entity_get_info('file');
+    $modes = array_keys($entity_info['view modes']);
+
+    foreach ($variables as $bundle => $default_settings) {
+      $settings = variable_get('field_bundle_settings_file__' . $bundle, array('view_modes' => array()));
+      $new_settings = array_merge($settings, $default_settings);
+      foreach ($modes as $mode) {
+        if (!isset($new_settings['view_modes'][$mode])) {
+          $new_settings['view_modes'][$mode] = array('custom_settings' => FALSE);
+        }
+      }
+      variable_set('field_bundle_settings_file__' . $bundle, $new_settings);
+    }
+
     drupal_set_message('Default display settings imported from default file.', 'status');
   }
 }

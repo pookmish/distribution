@@ -13,99 +13,31 @@
  */
 function theme_media_displays_download_file_alt($variables) {
   $output = '';
+  foreach ($variables['items'] as $delta => $file) {
+    if (!empty($file)) {
+      $link_field = $variables['settings']['link_field'];
+      $title_field = $variables['settings']['title_field'];
 
-  foreach ($variables['items'] as $delta => $item) {
-    if (!empty($item)) {
-      $output .= theme('media_displays_download_alt_item',
-        array('file' => (object) $item));
+      // Views may call this function with a NULL value, return an empty string.
+      if (empty($file['fid'])) {
+        return '';
+      }
+
+      if (isset($file[$link_field]) && !empty($file[$link_field])) {
+        $link_text = $file[$link_field][LANGUAGE_NONE][0]['value'];
+      }
+      else {
+        $link_text = $file['filename'];
+      }
+
+      if (isset($file[$title_field]) && !empty($file[$title_field])) {
+        $title_text = $file[$title_field][LANGUAGE_NONE][0]['value'];
+      }
+      else {
+        $title_text = $file['filename'];
+      }
+      $output .= '<span class="media-element">' . l($link_text, file_create_url($file['uri']), array('attributes' => array('title' => $title_text))) . '</span>';
     }
   }
-  return $output;
-}
-
-
-/**
- * Theme function for the 'direct_download' multiple file formatter.
- *
- * @param $file
- *   File to format.
- * @return
- *   A string containing the HTML ouput.
- */
-function theme_media_displays_download_alt_item($variables) {
-  $file = $variables['file'];
-
-  // Views may call this function with a NULL value, return an empty string.
-  if (empty($file->fid)) {
-    return '';
-  }
-
-  // Use the description or the title as the link text if available.
-  if (!isset($file->field_alt_text['und']) || empty($file->field_alt_text['und'][0]['value'])) {
-    $link_text = $file->filename;
-  }
-  else {
-    $link_text = $file->field_alt_text['und'][0]['value'];
-  }
-  // Use the title text if available
-  $title_text = '';
-  if (!isset($file->field_document_title['und']) || empty($file->field_document_title['und'][0]['value'])) {
-    $title_text = $file->filename;
-  }
-
-  return '<span class="media-element">' .l($link_text, file_create_url($file->uri), array('attributes' => array('title' => $title_text))) . '</span>';
-}
-
-/**
- * Theme function for the 'image (alt quotes)' multiple file formatter.
- *
- * Note: this is basically a copy of the image format type, with the rules for handling single quotes thrown in
- *
- * @param $items
- *   Information about the image.
- * @return
- *   A string containing the HTML ouput.
- */
-function theme_media_displays_image_alt_quotes($variables) {
-  $item = $variables['items'][0];
-  $image = array(
-    'path' => $item['uri'],
-  );
-
-  if (array_key_exists('alt', $item)) {
-    $image['alt'] = htmlspecialchars(htmlspecialchars_decode($item['alt'], ENT_QUOTES), ENT_COMPAT);
-  }
-
-  if (isset($item['attributes'])) {
-    $image['attributes'] = $item['attributes'];
-  }
-
-  if (isset($item['width']) && isset($item['height'])) {
-    $image['width'] = $item['width'];
-    $image['height'] = $item['height'];
-  }
-
-  // Do not output an empty 'title' attribute.
-  if (isset($item['title']) && drupal_strlen($item['title']) > 0) {
-    $image['title'] = htmlspecialchars(htmlspecialchars_decode($item['title'], ENT_QUOTES), ENT_COMPAT);
-
-  }
-
-  if ($variables['image_style']) {
-    $image['style_name'] = $variables['image_style'];
-    $output = theme('image_style', $image);
-  }
-  else {
-    $output = theme('image', $image);
-  }
-
-  if (isset($variables['path']['path'])) {
-    $path = $variables['path']['path'];
-    $options = isset($variables['path']['options']) ? $variables['path']['options'] : array();
-    // When displaying an image inside a link, the html option must be TRUE.
-    $options['html'] = TRUE;
-    $output = l($output, $path, $options);
-  }
-
   return $output;
 }

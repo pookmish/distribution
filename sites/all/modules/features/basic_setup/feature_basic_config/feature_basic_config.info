@@ -26,7 +26,6 @@ dependencies[] = jquery_update
 dependencies[] = libraries
 dependencies[] = media
 dependencies[] = media_bulk_upload
-dependencies[] = media_display_migrate
 dependencies[] = media_displays
 dependencies[] = media_internet
 dependencies[] = media_wysiwyg

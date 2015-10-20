@@ -85,3 +85,50 @@ function decker_distro_install() {
     }
   }
 }
+
+
+/**
+ * Implements hook_install_tasks().
+ */
+function decker_distro_install_tasks($install_state) {
+  $tasks = array(
+    'decker_distro_setup_cleanup' => array(
+      'display_name' => st('Cleanup'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+  );
+
+  return $tasks;
+}
+
+/**
+ * Cleanup install task.
+ */
+function decker_distro_setup_cleanup() {
+  $disable = array(
+    'media_displays_migrate',
+    'update',
+    'dblog'
+  );
+  module_disable($disable);
+
+  $query = db_select('system', 's')
+    ->fields('s', array('name'))
+    ->condition('status', 0)
+    ->execute();
+  while ($module = $query->fetchField()) {
+    $disable[] = $module;
+  }
+  drupal_uninstall_modules($disable);
+
+  features_revert();
+
+  db_update('block')
+    ->fields(array('title' => '<none>', 'status' => 0))
+    ->condition('theme', variable_get('theme_default'))
+    ->condition('delta', 'main', '!=')
+    ->execute();
+
+  variable_set('site_name', 'Mike Decker');
+}

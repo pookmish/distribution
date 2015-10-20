@@ -181,14 +181,15 @@ function mbp_defaults_views_ui_display_top_links_alter(&$links, $view, $display_
 }
 
 /**
+ * Implements hook_block_info().
+ *
  * Structures the blocks info. If a MBP field contains the region select box,
  * a block will be created for each region in the select list.
  * If the region select box does not exist, a single block will be created.
  *
- * Implements hook_block_info().
  */
 function mbp_defaults_block_info() {
-  $regions = variable_get('mbp_regions', array());
+  $regions = _mbp_regions();
   $fields = variable_get('mbp_defaults', array());
 
   $blocks = array();
@@ -217,9 +218,9 @@ function mbp_defaults_block_info() {
 }
 
 /**
- * Constructs the renderable array from the quicktabs module
- *
  * Implements hook_block_view().
+ *
+ * Constructs the renderable array from the quicktabs module
  */
 function mbp_defaults_block_view($delta = '') {
   $fields = variable_get('mbp_defaults');
@@ -279,7 +280,7 @@ function mbp_defaults_contextual_links_view_alter(&$element, $items) {
  * Implements hook_flush_caches().
  */
 function mbp_defaults_flush_caches() {
-  $regions = variable_get('mbp_regions');
+  $regions = _mbp_regions();
   $query = db_select('block', 'b')
     ->fields('b', array('bid', 'delta'))
     ->condition('module', 'mbp_defaults')

@@ -32,3 +32,4 @@ dependencies[] = views_ui
 dependencies[] = feature_basic_config
 dependencies[] = feature_basic_content
 dependencies[] = environment_indicator
+dependencies[] = media_displays_migrate

@@ -5,7 +5,7 @@
  *
  * Direct copy from file_entity module
  */
-function media_display_migrate_schema() {
+function media_displays_migrate_schema() {
   if (!db_table_exists('file_display')) {
     $schema['file_display'] = array(
       'description' => 'Stores configuration options for file displays.',
@@ -71,7 +71,7 @@ function media_display_migrate_schema() {
  *
  * calls the function to populate the database with the initial styles on module enable/site spin up, if the file exists
  */
-function media_display_migrate_install() {
+function media_displays_migrate_install() {
   _media_migrate_default_import();
 
   //Creates the directory for upload functionality

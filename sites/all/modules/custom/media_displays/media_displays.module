@@ -1,23 +1,25 @@
 <?php
 
-function media_displays_theme() {
-  $theme = array(
-    'media_displays_download_file_alt' => array(
-      'variables' => array('items' => NULL),
-      'file' => 'media_displays.formatter.inc'
+/**
+ * Implements hook_theme().
+ */
+function media_displays_theme($existing, $type, $theme, $path) {
+  $theme = array();
+  $theme['media_displays_download_file_alt'] = array(
+    'variables' => array(
+      'items' => NULL,
+      'settings' => array()
     ),
-    'media_displays_download_alt_item' => array(
-      'variables' => array('file' => NULL),
-      'file' => 'media_displays.formatter.inc'
+    'file' => 'media_displays.formatter.inc'
+  );
+  $theme['download_alt_item'] = array(
+    'variables' => array(
+      'file' => NULL,
+      'link_text' => NULL,
+      'title_text' => NULL
     ),
-    'media_displays_image_alt_quotes' => array(
-      'variables' => array(
-        'items' => NULL,
-        'path' => NULL,
-        'image_style' => NULL,
-      ),
-      'file' => 'media_displays.formatter.inc'
-    ),
+    'template' => 'download-alt-item',
+    'path' => $path . '/templates',
   );
   return $theme;
 }
@@ -28,53 +30,21 @@ function media_displays_theme() {
 function media_displays_field_formatter_info() {
   $formatters = array(
     'direct_download_alt' => array(
-      'label' => t('Download File (ALT Text)'),
+      'label' => t('Download File (Link Text Field)'),
       'field types' => array('file', 'image'),
-      'description' => t('Displays a link to direct download the file using the ALT text.')
-    ),
-    'image_alt_quotes' => array(
-      'label' => t('Image (ALT quotes)'),
-      'field types' => array('file', 'image'),
-      'description' => t('Allows alt attributes to have single quotes'),
+      'description' => t('Displays a link to direct download the file using a text field.'),
       'settings' => array(
-        'media_displays_image_style' => '',
-        'media_displays_image_link' => '',
+        'link_field' => NULL,
+        'title_field' => NULL
+      ),
+      'file formatter' => array(
+        'mime types' => array('text/*', 'application/*'),
       ),
     ),
   );
   return $formatters;
 }
 
-/**
- * Implements hook_field_formatter_settings_form().
- */
-function media_displays_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
-  $display = $instance['display'][$view_mode];
-  $settings = $display['settings'];
-  $image_styles = image_style_options(FALSE, PASS_THROUGH);
-
-  $element['media_displays_image_style'] = array(
-    '#title' => t('Image style'),
-    '#type' => 'select',
-    '#default_value' => $settings['media_displays_image_style'],
-    '#empty_option' => t('None (original image)'),
-    '#options' => $image_styles,
-  );
-
-  $link_types = array(
-    'content' => t('Content'),
-    'file' => t('File'),
-  );
-  $element['media_displays_image_link'] = array(
-    '#title' => t('Link image to'),
-    '#type' => 'select',
-    '#default_value' => $settings['media_displays_image_link'],
-    '#empty_option' => t('Nothing'),
-    '#options' => $link_types,
-  );
-
-  return $element;
-}
 
 /**
  * Implementation of hook_field_formatter_view().
@@ -86,76 +56,50 @@ function media_displays_field_formatter_view($entity_type, $entity, $field, $ins
     case 'direct_download_alt':
       $element[0] = array(
         '#theme' => 'media_displays_download_file_alt',
-        '#items' => $items
+        '#items' => $items,
+        '#settings' => $display['settings'],
       );
-      break;
-    case 'image_alt_quotes':
-      if ($display['settings']['media_displays_image_link'] == 'content') {
-        $uri = entity_uri($entity_type, $entity);
-      }
-      elseif ($display['settings']['media_displays_image_link'] == 'file') {
-        $link_file = TRUE;
-      }
-
-      foreach ($items as $delta => $item) {
-        if (isset($link_file)) {
-          $uri = array(
-            'path' => file_create_url($item['uri']),
-            'options' => array(),
-          );
-        }
-        $element[$delta] = array(
-          '#theme' => 'media_displays_image_alt_quotes',
-          '#items' => $items,
-          '#image_style' => $display['settings']['media_displays_image_style'],
-          '#path' => isset($uri) ? $uri : '',
-        );
-      }
       break;
   }
   return $element;
 }
 
 /**
- *  Implements hook_filter_info_alter().
+ * Implements hook_field_formatter_settings_form().
  */
-function media_displays_filter_info_alter(&$info) {
-  $info['media_filter']['process callback'] = '_media_displays_filter';
-}
+function media_displays_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $display = $instance['display'][$view_mode];
+  $type = $display['type'];
+  $settings = $display['settings'];
+  $element = array();
 
-function _media_displays_filter($text) {
-  $offset = 0;
-  while (preg_match('/\[\[{.*?}\]\]/m', $text, $match, 0, $offset)) {
-    $token = str_replace('[[', '', $match[0]);
-    $token = str_replace(']]', '', $token);
-    $json = json_decode($token, TRUE);
-    $not_this_display = TRUE;
-
-    if (isset($json['view_mode'])) {
-      $file = file_load($json['fid']);
-      $displays = file_displays_load($file->type, $json['view_mode'], TRUE);
-      if (isset($displays['file_field_direct_download_alt']) && $displays['file_field_direct_download_alt']->status) {
-          $url = file_create_url($file->uri);
-          $options = array(
-            'attributes' => array_merge(array(
-              'title' => isset($json['fields']['field_document_title[und][0][value]']) ? $json['fields']['field_document_title[und][0][value]'] : '',
-            ), $json['attributes']),
-          );
-
-          $link_text = isset($json['link_text']) ? $json['link_text'] : $json['fields']['field_alt_text[und][0][value]'];
-
-          $text = str_replace($match, l(html_entity_decode($link_text), $url, $options), $text);
-          $not_this_display = FALSE;
+  switch ($type) {
+    case 'direct_download_alt':
+      $document_fields = field_info_instances('file', 'document');
+      $options = array();
+      foreach ($document_fields as $key => $value) {
+        if ($value['widget']['module'] == 'text') {
+          $options[$key] = $value['label'];
         }
-    }
-
-    if ($not_this_display) {
-      $offset = strpos($text, $match[0], $offset) + strlen($match[0]);
-    }
-
+      }
+      $element['link_field'] = array(
+        '#type' => 'select',
+        '#title' => t('Field for link text'),
+        '#options' => $options,
+        '#default_value' => isset($settings['link_field']) ? $settings['link_field'] : '',
+      );
+      $element['title_field'] = array(
+        '#type' => 'select',
+        '#title' => t('Field for title text. (Text that is displayed upon hover)'),
+        '#options' => $options,
+        '#default_value' => isset($settings['title_field']) ? $settings['title_field'] : '',
+      );
+      break;
   }
-  $text = media_wysiwyg_filter($text);
-  return $text;
+
+
+  return $element;
+
 }
 
 /**
@@ -163,4 +107,40 @@ function _media_displays_filter($text) {
  */
 function media_displays_init() {
   drupal_add_css('.view-media-default iframe {width:200px; height:140px;}', 'inline');
+//  drupal_add_js(drupal_get_path('module', 'media_displays') . '/media_displays.js');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function media_displays_form_media_wysiwyg_format_form_alter(&$form, &$form_state, $form_id) {
+  if (sizeof($form['#formats']) > 1) {
+    if (isset($form['options']['fields']) && $form['options']['fields']['#bundle'] == 'video') {
+      unset($form['options']['format']['#options']['default']);
+    }
+  }
+}
+
+/**
+ * Implements hook_media_wysiwyg_token_to_markup_alter().
+ */
+function media_displays_media_wysiwyg_token_to_markup_alter(&$element, $tag_info, $settings) {
+  if (isset($element['content']) && isset($element['content']['file'])) {
+    switch ($element['content']['file']['#theme']) {
+      case 'media_displays_download_file_alt':
+        $file_settings = $element['content']['file']['#settings'];
+        $link_text = $tag_info['link_text'];
+        if (isset($tag_info['fields'][$file_settings['title_field'] . '[und][0][value]'])) {
+          $title_text = $tag_info['fields'][$file_settings['title_field'] . '[und][0][value]'];
+        }
+        else {
+          $title_text = '';
+        }
+
+        $element['content']['file']['#theme'] = 'download_alt_item';
+        $element['content']['file']['#link_text'] = $link_text;
+        $element['content']['file']['#title_text'] = $title_text;
+        break;
+    }
+  }
 }

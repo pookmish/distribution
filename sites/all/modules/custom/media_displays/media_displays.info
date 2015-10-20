@@ -1,6 +1,9 @@
-name = Media Display settings
+name = Media Displays
+description = Provides some additional file type display settings.
 core = 7.x
 package = Custom
 version = 7.x-0.1
 
 dependencies[] = media
+
+scripts[] = media_displays.js
