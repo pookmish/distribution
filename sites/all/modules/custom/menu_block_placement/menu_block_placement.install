@@ -42,10 +42,3 @@ function menu_block_placement_field_schema($field) {
 function menu_block_placement_install() {
   _mbp_regions();
 }
-
-/**
- * Implements hook_uninstall().
- */
-function menu_block_placement_uninstall() {
-  variable_del('mbp_regions');
-}
