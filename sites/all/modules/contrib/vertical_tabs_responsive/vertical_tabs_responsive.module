@@ -288,12 +288,18 @@ function vertical_tabs_responsive_should_responsify_vt($reset = FALSE) {
         break;
     }
 
-    // Whitelist and blacklist check out.
-    $paths = variable_get('vertical_tabs_responsive_path_blacklist', '');
-    $path_disabled = !empty($paths) && drupal_match_path(current_path(), $paths);
+    // Compatibility with biblio module.
+    $node = menu_get_object();
+    if (drupal_match_path(current_path(), 'node/add/biblio') || ( is_object($node) && ($node->type == 'biblio'))) {
+      $result = FALSE;
+    }
 
-    $paths_black = variable_get('vertical_tabs_responsive_path_whitelist', '');
-    $path_enabled = !empty($paths_black) && drupal_match_path(current_path(), $paths_black);
+    // Whitelist and blacklist check out.
+    $paths_black = variable_get('vertical_tabs_responsive_path_blacklist', '');
+    $path_disabled = !empty($paths_black) && drupal_match_path(current_path(), $paths_black);
+
+    $paths = variable_get('vertical_tabs_responsive_path_whitelist', '');
+    $path_enabled = !empty($paths) && drupal_match_path(current_path(), $paths);
 
     $result = ($result && !$path_disabled) || $path_enabled;
   }

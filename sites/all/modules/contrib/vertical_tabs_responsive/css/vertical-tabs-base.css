@@ -76,7 +76,19 @@ body.adminimal-theme .vertical-tabs-panes .fieldset-wrapper {
   padding-top: 35px;
 }
 
-/* DRUPAL COMMERCE THEME TWEAK */
+@media all and (min-width: 768px) and (max-width: 849px) {
+  body.adminimal-theme #main-content {
+    width: 78%;
+  }
+}
+
+@media all and (min-width: 850px) and (max-width: 991px) {
+  body.adminimal-theme #main-content {
+    width: 90%;
+  }
+}
+
+/* SHINY (DRUPAL COMMERCE THEME TWEAK) */
 
 #block-system-main {
   position: initial !important;

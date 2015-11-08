@@ -5,9 +5,9 @@ core = 7.x
 
 configure = admin/config/user-interface/vertical_tabs_responsive
 
-; Information added by Drupal.org packaging script on 2015-09-09
-version = "7.x-1.0-rc1"
+; Information added by Drupal.org packaging script on 2015-10-27
+version = "7.x-1.0-rc2"
 core = "7.x"
 project = "vertical_tabs_responsive"
-datestamp = "1441829940"
+datestamp = "1445974740"
 
