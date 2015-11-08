@@ -11,7 +11,7 @@ function feature_basic_content_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'field_collection_item-field_basic_page_tabs-field_basic_page_tab_body'
+  // 'field_collection_item-field_basic_page_tabs-field_basic_page_tab_body'.
   $field_instances['field_collection_item-field_basic_page_tabs-field_basic_page_tab_body'] = array(
     'bundle' => 'field_basic_page_tabs',
     'default_value' => NULL,
@@ -46,7 +46,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_basic_page_tabs-field_basic_page_tab_label'
+  // 'field_collection_item-field_basic_page_tabs-field_basic_page_tab_label'.
   $field_instances['field_collection_item-field_basic_page_tabs-field_basic_page_tab_label'] = array(
     'bundle' => 'field_basic_page_tabs',
     'default_value' => NULL,
@@ -81,7 +81,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_basic_slideshow_images-field_basic_slideshow_caption'
+  // 'field_collection_item-field_basic_slideshow_images-field_basic_slideshow_caption'.
   $field_instances['field_collection_item-field_basic_slideshow_images-field_basic_slideshow_caption'] = array(
     'bundle' => 'field_basic_slideshow_images',
     'default_value' => NULL,
@@ -116,7 +116,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_basic_slideshow_images-field_slideshow_image'
+  // 'field_collection_item-field_basic_slideshow_images-field_slideshow_image'.
   $field_instances['field_collection_item-field_basic_slideshow_images-field_slideshow_image'] = array(
     'bundle' => 'field_basic_slideshow_images',
     'deleted' => 0,
@@ -180,7 +180,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_basic_slideshow_images-field_slideshow_image_link'
+  // 'field_collection_item-field_basic_slideshow_images-field_slideshow_image_link'.
   $field_instances['field_collection_item-field_basic_slideshow_images-field_slideshow_image_link'] = array(
     'bundle' => 'field_basic_slideshow_images',
     'default_value' => NULL,
@@ -230,7 +230,7 @@ function feature_basic_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_block-body'
+  // Exported field_instance: 'node-basic_block-body'.
   $field_instances['node-basic_block-body'] = array(
     'bundle' => 'basic_block',
     'default_value' => NULL,
@@ -274,7 +274,7 @@ function feature_basic_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_block-field_available_views'
+  // Exported field_instance: 'node-basic_block-field_available_views'.
   $field_instances['node-basic_block-field_available_views'] = array(
     'bundle' => 'basic_block',
     'default_value' => array(
@@ -314,7 +314,7 @@ function feature_basic_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_block-field_basic_block_settings'
+  // Exported field_instance: 'node-basic_block-field_basic_block_settings'.
   $field_instances['node-basic_block-field_basic_block_settings'] = array(
     'bundle' => 'basic_block',
     'default_value' => array(
@@ -350,7 +350,7 @@ function feature_basic_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_page-body'
+  // Exported field_instance: 'node-basic_page-body'.
   $field_instances['node-basic_page-body'] = array(
     'bundle' => 'basic_page',
     'default_value' => NULL,
@@ -394,7 +394,7 @@ function feature_basic_content_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_page-field_basic_page_tabs'
+  // Exported field_instance: 'node-basic_page-field_basic_page_tabs'.
   $field_instances['node-basic_page-field_basic_page_tabs'] = array(
     'bundle' => 'basic_page',
     'default_value' => NULL,
@@ -438,7 +438,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-basic_slideshow-field_basic_slideshow_assignment'
+  // 'node-basic_slideshow-field_basic_slideshow_assignment'.
   $field_instances['node-basic_slideshow-field_basic_slideshow_assignment'] = array(
     'bundle' => 'basic_slideshow',
     'default_value' => array(
@@ -481,7 +481,7 @@ function feature_basic_content_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'node-basic_slideshow-field_basic_slideshow_images'
+  // 'node-basic_slideshow-field_basic_slideshow_images'.
   $field_instances['node-basic_slideshow-field_basic_slideshow_images'] = array(
     'bundle' => 'basic_slideshow',
     'default_value' => NULL,

@@ -10,7 +10,7 @@
 function feature_basic_event_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-basic_event-body'
+  // Exported field_instance: 'node-basic_event-body'.
   $field_instances['node-basic_event-body'] = array(
     'bundle' => 'basic_event',
     'default_value' => NULL,
@@ -54,7 +54,7 @@ function feature_basic_event_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-basic_event-field_basic_event_date_time'
+  // Exported field_instance: 'node-basic_event-field_basic_event_date_time'.
   $field_instances['node-basic_event-field_basic_event_date_time'] = array(
     'bundle' => 'basic_event',
     'deleted' => 0,
@@ -69,6 +69,7 @@ function feature_basic_event_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',

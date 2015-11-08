@@ -10,7 +10,7 @@
 function feature_basic_workbench_config_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_content_section'
+  // Exported field_base: 'field_content_section'.
   $field_bases['field_content_section'] = array(
     'active' => 1,
     'cardinality' => 1,

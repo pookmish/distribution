@@ -10,7 +10,7 @@
 function feature_basic_workbench_config_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-basic_block-field_content_section'
+  // Exported field_instance: 'node-basic_block-field_content_section'.
   $field_instances['node-basic_block-field_content_section'] = array(
     'bundle' => 'basic_block',
     'default_value' => NULL,
@@ -43,7 +43,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
-  // Exported field_instance: 'node-basic_event-field_content_section'
+  // Exported field_instance: 'node-basic_event-field_content_section'.
   $field_instances['node-basic_event-field_content_section'] = array(
     'bundle' => 'basic_event',
     'default_value' => NULL,
@@ -82,7 +82,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
-  // Exported field_instance: 'node-basic_page-field_content_section'
+  // Exported field_instance: 'node-basic_page-field_content_section'.
   $field_instances['node-basic_page-field_content_section'] = array(
     'bundle' => 'basic_page',
     'default_value' => NULL,
@@ -122,7 +122,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
-  // Exported field_instance: 'node-basic_slideshow-field_content_section'
+  // Exported field_instance: 'node-basic_slideshow-field_content_section'.
   $field_instances['node-basic_slideshow-field_content_section'] = array(
     'bundle' => 'basic_slideshow',
     'default_value' => NULL,
@@ -155,7 +155,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
-  // Exported field_instance: 'node-expandable_page-field_content_section'
+  // Exported field_instance: 'node-expandable_page-field_content_section'.
   $field_instances['node-expandable_page-field_content_section'] = array(
     'bundle' => 'expandable_page',
     'default_value' => NULL,
@@ -194,7 +194,7 @@ function feature_basic_workbench_config_field_default_field_instances() {
     'workbench_access_field' => 1,
   );
 
-  // Exported field_instance: 'node-webform-field_content_section'
+  // Exported field_instance: 'node-webform-field_content_section'.
   $field_instances['node-webform-field_content_section'] = array(
     'bundle' => 'webform',
     'default_value' => NULL,
