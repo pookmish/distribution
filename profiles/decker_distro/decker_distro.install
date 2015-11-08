@@ -5,24 +5,54 @@
  * Perform actions to set up the site for this profile.
  */
 function decker_distro_install() {
-  // Enable, disable and set active themes
-  variable_set('admin_theme', 'seven');
-  variable_set('node_admin_theme', '1');
-
   // ignore any rebuild messages
   node_access_needs_rebuild(FALSE);
 
   // Create a default role for site administrators, with all available permissions assigned.
-  $role = new stdClass();
-  $role->name = 'administrator';
-  $role->weight = 20;
-  user_role_save($role);
+  if (!$role = user_role_load_by_name('administrator')) {
+    $role = new stdClass();
+    $role->name = 'administrator';
+    $role->weight = 20;
+    user_role_save($role);
+  }
 
   user_role_grant_permissions($role->rid, array_keys(module_invoke_all('permission')));
   // Set this as the administrator role.
   variable_set('user_admin_role', $role->rid);
+}
 
 
+/**
+ * Implements hook_install_tasks().
+ */
+function decker_distro_install_tasks(&$install_state) {
+  $tasks = array(
+    'decker_distro_nodes' => array(
+      'display_name' => st('Nodes'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+    'decker_distro_variables' => array(
+      'display_name' => st('Variables'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+    'decker_distro_permissions' => array(
+      'display_name' => st('Permissions'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+    'decker_distro_setup_cleanup' => array(
+      'display_name' => st('Cleanup'),
+      'display' => FALSE,
+      'type' => 'normal'
+    ),
+  );
+
+  return $tasks;
+}
+
+function decker_distro_nodes() {
   // Creates Initial 403 Page using the Basic Page type
   $node = new StdClass();
   $node->type = 'basic_page';
@@ -40,60 +70,6 @@ function decker_distro_install() {
   $node->body['und'][0]['format'] = 'basic_html';
   $node->body['und'][0]['value'] = '<h2 style="text-align: center;">We Appologize.</h2><p style="text-align: center;">This page can not be found. Please check the URL and try again.</p><p style="text-align: center;">Thank You.</p>';
   node_save($node);
-
-  // sets the 403 & 404 variables for the first nodes created above.
-  variable_set('site_403', 'node/1');
-  variable_set('site_404', 'node/2');
-  // sets the node options which aren't contained in the feature.
-  variable_set('node_options_basic_page', array('status'));
-  variable_set('node_options_basic_block', array('status'));
-  variable_set('node_options_basic_slideshow', array('status'));
-  variable_set('node_options_basic_event', array('status'));
-
-  $permissions = array(
-    'anonymous user' => array(
-      'access content' => 1,
-      'search content' => 1,
-      'view files' => 1,
-    ),
-    'authenticated user' => array(
-      'access content' => 1,
-      'search content' => 1,
-      'view files' => 1,
-      'use text format basic_html' => 1,
-      'view own files' => 1,
-      'view own unpublished content' => 1,
-    ),
-  );
-
-  // obtains all the roles and role IDs
-  $query = db_select('role', 'r')
-    ->fields('r', array('rid', 'name'))
-    ->execute();
-
-  // loops through all the roles and sets the permissions if the role exists
-  // from the array of permissions above
-  while ($row = $query->fetchAssoc()) {
-    if (array_key_exists($row['name'], $permissions)) {
-      user_role_change_permissions($row['rid'], $permissions[$row['name']]);
-    }
-  }
-}
-
-
-/**
- * Implements hook_install_tasks().
- */
-function decker_distro_install_tasks($install_state) {
-  $tasks = array(
-    'decker_distro_setup_cleanup' => array(
-      'display_name' => st('Cleanup'),
-      'display' => FALSE,
-      'type' => 'normal'
-    ),
-  );
-
-  return $tasks;
 }
 
 /**
@@ -125,4 +101,88 @@ function decker_distro_setup_cleanup() {
     ->execute();
 
   variable_set('site_name', 'Mike Decker');
+}
+
+function decker_distro_variables() {
+  // Enable, disable and set active themes
+  variable_set('admin_theme', 'seven');
+  variable_set('node_admin_theme', '1');
+
+  // sets the 403 & 404 variables for the first nodes created above.
+  variable_set('site_403', 'node/1');
+  variable_set('site_404', 'node/2');
+
+  // sets the node options which aren't contained in the feature.
+  variable_set('node_options_basic_page', array('status'));
+  variable_set('node_options_basic_block', array('status'));
+  variable_set('node_options_basic_slideshow', array('status'));
+  variable_set('node_options_basic_event', array('status'));
+
+  // Chosen Module Vars
+  variable_set('chosen_minimum_multiple', 0);
+  variable_set('chosen_minimum_single', 0);
+  variable_set('chosen_disable_search_threshold', 5);
+  variable_set('chosen_search_contains', 1);
+  variable_set('chosen_jquery_selector', 'body:not([class*="views"]) select:not([name*="day"],[name*="year"],[name*="month"],[class*="hour"],[class*="minute"])');
+
+  // Jquery Update Vars
+  variable_set('jquery_update_jquery_version', '1.9');
+  variable_set('jquery_update_jquery_admin_version', '1.8');
+}
+
+function decker_distro_permissions($role_permissions = NULL) {
+  $permissions = array(
+    'anonymous user' => array(
+      'use exclude node title' => 0,
+      'access content' => 1,
+      'search content' => 1,
+      'view files' => 1,
+    ),
+    'authenticated user' => array(
+      'use exclude node title' => 1,
+      'access contextual links' => 1,
+      'access draggableviews' => 1,
+      'access environment indicator' => 1,
+      'access ckeditor link' => 1,
+      'create files' => 1,
+      'access administration menu' => 1,
+      'access content' => 1,
+      'search content' => 1,
+      'access media browser' => 1,
+      'import media' => 1,
+      'add media from remote sources' => 1,
+      'use media wysiwyg' => 1,
+      'notify of path changes' => 1,
+      'add media from remote urls' => 1,
+      'view the administration theme' => 1,
+      'access administration pages' => 1,
+      'view files' => 1,
+      'use text format basic_html' => 1,
+      'view own files' => 1,
+      'view own unpublished content' => 1,
+    ),
+  );
+  // Checks if this is ran on installation
+  if (isset($role_permissions['installation_finished'])) {
+    $role_permissions = $permissions;
+  }
+
+
+  $all_permissions = array_keys(user_permission_get_modules());
+  foreach ($role_permissions as $role => $permissions) {
+    if ($role = user_role_load_by_name($role)) {
+      $change_perms = array();
+
+      foreach ($permissions as $perm => $yes_no) {
+        if (in_array($perm, $all_permissions)) {
+          $change_perms[$perm] = $yes_no;
+        }
+      }
+      user_role_change_permissions($role->rid, $change_perms);
+    }
+  }
+
+  if ($role = user_role_load_by_name('administrator')) {
+    user_role_grant_permissions($role->rid, $all_permissions);
+  }
 }

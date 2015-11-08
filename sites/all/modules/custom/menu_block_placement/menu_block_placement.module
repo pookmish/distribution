@@ -474,5 +474,6 @@ function _mbp_regions() {
     cache_set('mbp_regions', $available_regions);
     $cache = cache_get('mbp_regions');
   }
-  return $cache->data;
+
+  return isset($cache->data) ? $cache->data : array();
 }
