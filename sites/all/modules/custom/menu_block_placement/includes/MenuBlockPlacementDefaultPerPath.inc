@@ -1,19 +1,20 @@
 <?php
 /**
  * @file
- * A contectual filter that allows content to show per menu hierarchy
+ * A contextual filter to show per menu item (not hierarchical).
  */
 
 /**
- * Extending views_plugin_argument_default_node()
+ * Class MenuBlockPlacementDefaultPerPath.
  */
-class views_plugin_argument_default_menu_block_placement extends views_plugin_argument_default {
+class MenuBlockPlacementDefaultPerPath extends views_plugin_argument_default {
 
   /**
-   * Provide an imploded list of mlids
+   * Provide the mlid array.
    */
-  function get_argument() {
+  public function get_argument() {
     $path = current_path();
+
     $menus = array();
     foreach ($this->view->argument as $arg) {
       if (strpos($arg->options['default_argument_type'], 'menu_block_placement_mlid') !== FALSE) {
@@ -21,19 +22,16 @@ class views_plugin_argument_default_menu_block_placement extends views_plugin_ar
         $menus = array_merge($menus, array_filter($field['settings']['default_menus']));
       }
     }
-
     foreach ($menus as $menu) {
+
       $row = db_select('menu_links', 'm')
         ->fields('m')
         ->condition('menu_name', $menu)
         ->condition('link_path', $path)
         ->execute()
         ->fetchAssoc();
-      for ($i = 1; $i < 9; $i++) {
-        if ($row['p' . $i]) {
-          $mlids[] = $row['p' . $i];
-        }
-      }
+
+      $mlids[] = $row['mlid'];
 
       if ($path == variable_get('site_frontpage', 'node')) {
         $row = db_select('menu_links', 'm')
@@ -42,18 +40,17 @@ class views_plugin_argument_default_menu_block_placement extends views_plugin_ar
           ->condition('link_path', '<front>')
           ->execute()
           ->fetchAssoc();
-        if($row){
+        if ($row) {
           $mlids[] = $row['mlid'];
         }
       }
     }
 
     if (!empty($mlids)) {
-      return implode('+', $mlids);
-    }
-    else {
-      return FALSE;
+      return implode('+', array_filter($mlids));
     }
 
+    return FALSE;
   }
+
 }

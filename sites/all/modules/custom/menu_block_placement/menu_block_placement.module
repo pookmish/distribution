@@ -38,6 +38,36 @@ function menu_block_placement_field_widget_info() {
 }
 
 /**
+ * Implements hook_views_plugins().
+ */
+function menu_block_placement_views_plugins() {
+  return array(
+    'module' => 'views',
+    'argument validator' => array(
+      'menu_block_placement' => array(
+        'title' => t('Menu Block Placement'),
+        'handler' => 'views_plugin_argument_validate_node',
+      ),
+    ),
+    'argument default' => array(
+      'menu_block_placement_mlid' => array(
+        'title' => t('Active Menu Tree - Menu Block Placement'),
+        'handler' => 'MenuBlockPlacementDefault',
+        'path' => drupal_get_path('module', 'menu_block_placement') . '/includes',
+        'parent' => 'fixed',
+      ),
+      'menu_block_placement_mlid_per_node' => array(
+        'title' => t('Active Menu Item - Menu Block Placement Per Path'),
+        'handler' => 'MenuBlockPlacementDefaultPerPath',
+        'path' => drupal_get_path('module', 'menu_block_placement') . '/includes',
+        'parent' => 'fixed',
+      ),
+    ),
+  );
+}
+
+
+/**
  * Implements hook_field_create_field().
  */
 function menu_block_placement_field_create_field($field) {

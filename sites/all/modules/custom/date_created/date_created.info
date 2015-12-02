@@ -1,0 +1,4 @@
+name = Date Created
+description = Adds a configurable field to nodes to allow for easier display management
+core = 7.x
+verison = 7.x-1.x

@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Module date_created.
+ */
+
+/**
+ * Implements hook_field_extra_fields().
+ */
+function date_created_field_extra_fields() {
+  $extrafield_name = 'date_created';
+  $types = array_keys(node_type_get_names());
+  foreach ($types as $node_type) {
+    $extra['node'][$node_type]['display'][$extrafield_name] = array(
+      'label' => t('Date Created'),
+      'description' => t('Date Created module form elements.'),
+      'weight' => 50,
+    );
+  }
+  return $extra;
+}
+
+/**
+ * Implements hook_node_view().
+ */
+function date_created_node_view($node, $view_mode, $langcode) {
+  $extrafields = field_extra_fields_get_display('node', $node->type, $view_mode);
+  $extrafield_name = 'date_created';
+  if (isset($extrafields[$extrafield_name])
+    && isset($extrafields[$extrafield_name]['visible'])
+    && $extrafields[$extrafield_name]['visible']
+  ) {
+    $node->content[$extrafield_name] = array(
+      '#theme' => 'field',
+      '#entity_type' => 'node',
+      '#bundle' => $node->type,
+      '#label_display' => 'hidden',
+      '#title' => 'Date Created',
+      '#field_type' => 'extra_date_created',
+      '#field_name' => 'extra_date_created',
+      '#items' => array(
+        0 => array(
+          'value' => $node->created,
+        ),
+      ),
+      0 => array(
+        '#markup' => date('m.d.y', $node->created),
+      ),
+    );
+  }
+}

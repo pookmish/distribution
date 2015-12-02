@@ -8,7 +8,7 @@
  * Implements hook_views_default_views().
  */
 function mbp_defaults_views_default_views() {
-  //lists of all available MBP fields
+  // Lists of all available MBP fields.
   $fields = variable_get('mbp_defaults');
 
   $views = array();

@@ -1,19 +1,21 @@
 <?php
 /**
  * @file
- * Defines custom formatters
+ * Defines custom formatter.
  */
+
 /**
  * Theme function for the 'direct_download' multiple file formatter.
  *
- * @param $file
+ * @param array $variables
  *   File to format.
- * @return
- *   A string containing the HTML ouput.
+ *
+ * @return string
+ *   A string containing the HTML output.
  */
 function theme_media_displays_download_file_alt($variables) {
   $output = '';
-  foreach ($variables['items'] as $delta => $file) {
+  foreach ($variables['items'] as $file) {
     if (!empty($file)) {
       $link_field = $variables['settings']['link_field'];
       $title_field = $variables['settings']['title_field'];

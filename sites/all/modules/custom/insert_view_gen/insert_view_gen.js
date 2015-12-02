@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Javascript to generate desired token.
+ */
+
 (function ($) {
   Drupal.behaviors.test = {
     attach: function (context, settings) {

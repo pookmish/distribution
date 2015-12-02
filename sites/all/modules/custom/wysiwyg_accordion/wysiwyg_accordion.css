@@ -1,8 +1,25 @@
 .accordion .glyphicon {
   cursor: pointer;
-  margin-right:5px;
+  margin-right: 5px;
 }
+
 .accordion .accordion-clicker {
-  cursor:pointer;
+  cursor: pointer;
   text-decoration: underline;
+}
+
+body.cke_editable .accordion:hover,
+body.cke_editable .accordion:hover .accordion {
+  background: rgba(200, 200, 200, 0.5) none repeat scroll 0 0;
+}
+
+body.cke_editable .accordion:hover:before,
+body.cke_editable .accordion:hover .accordion:before {
+  content: "Accordion";
+  font-size: 10px;
+  font-style: italic;
+  left: 10px;
+  position: absolute;
+  transform: rotate(90deg);
+  transform-origin: left top 0;
 }

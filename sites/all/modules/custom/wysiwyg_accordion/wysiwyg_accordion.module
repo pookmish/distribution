@@ -18,3 +18,12 @@ function wysiwyg_accordion_wysiwyg_plugin($editor, $version) {
       break;
   }
 }
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter().
+ */
+function wysiwyg_accordion_wysiwyg_editor_settings_alter(&$settings, $context) {
+  $settings['contentsCss'][] = drupal_get_path('module', 'wysiwyg_accordion') . '/wysiwyg_accordion.css';
+//  dpm($settings);
+//  dpm($context);
+}
