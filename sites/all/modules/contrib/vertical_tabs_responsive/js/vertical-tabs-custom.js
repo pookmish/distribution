@@ -11,12 +11,14 @@
       var button;
       var collapsed;
       var content_width;
+      var theme;
 
       try {
         left = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.left);
         vt_width = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.vt_width);
         button = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.button);
         collapsed = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.collapsed);
+        theme = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.theme);
       }
       catch (err) {
         // Default values if something goes wrong.
@@ -62,6 +64,12 @@
 
         // Add processed class.
         $('body').addClass('vertical-tabs-responsive-processed');
+
+        // Bootstrap special handling.
+        if (theme == 'bootstrap') {
+          $('body').addClass('vtr-bootstrap');
+          $('.main-container .region-content').attr('id', 'content');
+        }
       }
     }
   };

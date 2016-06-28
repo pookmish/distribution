@@ -1,3 +1,8 @@
+Vertical Tabs Responsive 7.x-1.0, 2015-Dec-01
+---------------------------------------------
+
+#2479467: Added compatibility with Bootstrap theme
+
 Vertical Tabs Responsive 7.x-1.x-rc2, 2015-Oct-27
 -------------------------------------------------
 

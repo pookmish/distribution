@@ -111,6 +111,7 @@ function vertical_tabs_responsive_get_first_parent_theme($theme) {
  *   In/Out parameter. Pass the current attached array for form.
  */
 function vertical_tabs_responsive_set_attached(array &$attached) {
+  global $theme;
 
   // Initialize variables.
   $attached = (isset($attached)) ? $attached : array();
@@ -122,6 +123,7 @@ function vertical_tabs_responsive_set_attached(array &$attached) {
     'vt_width' => drupal_json_encode(variable_get('vertical_tabs_responsive_vt_width', 30)),
     'button' => drupal_json_encode(variable_get('vertical_tabs_responsive_button', 0)),
     'collapsed' => drupal_json_encode(variable_get('vertical_tabs_responsive_collapsed', 0)),
+    'theme' => drupal_json_encode($theme),
   );
 
   // Passing variables to javascript.

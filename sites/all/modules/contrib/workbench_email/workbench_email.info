@@ -12,9 +12,9 @@ dependencies[] = token
 ; was added to core.
 dependencies[] = system (>=7.12)
 
-; Information added by Drupal.org packaging script on 2016-02-17
-version = "7.x-3.8"
+; Information added by Drupal.org packaging script on 2016-06-07
+version = "7.x-3.10"
 core = "7.x"
 project = "workbench_email"
-datestamp = "1455742740"
+datestamp = "1465343340"
 
