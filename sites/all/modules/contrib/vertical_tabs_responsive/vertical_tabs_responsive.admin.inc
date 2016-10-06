@@ -49,6 +49,7 @@ function vertical_tabs_responsive_admin_settings($form, &$form_state) {
       1 => t('Left'),
     ),
     '#default_value' => variable_get('vertical_tabs_responsive_left', 0),
+    '#description' => t('It is recommended to select the right side.'),
   );
 
   $form['general']['vertical_tabs_responsive_vt_width'] = array(

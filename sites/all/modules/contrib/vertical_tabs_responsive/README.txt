@@ -85,3 +85,11 @@ CONFIGURATION
     - Select roles that will see responsified vertical tabs
 
       Allows you to specify roles that will enjoy responsive vertical tabs.
+
+ * Whitelisting & Blacklisting
+
+   This module tries to detect automatically forms where vertical tabs could
+   be responsified with no side effects. If you have a form where vertical tabs
+   are not responsified you could try whitelisting it. On the other hand,
+   blacklisting is useful when this module automatically responsifies vertical
+   tabs of a form you wouldn't want to be responsified.

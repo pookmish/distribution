@@ -14,6 +14,7 @@
       var theme;
 
       try {
+        rtl = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.rtl);
         left = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.left);
         vt_width = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.vt_width);
         button = Drupal.vertical_tabs_responsive.intToString(settings.vertical_tabs_responsive.button);
@@ -22,6 +23,7 @@
       }
       catch (err) {
         // Default values if something goes wrong.
+        rtl = 0;
         left = 0;
         vt_width = 30;
         button = 0;
@@ -36,15 +38,16 @@
           'margin-left': 'initial'
         });
       }
-      else if (typeof left != 'undefined' && typeof content_width != 'undefined' && typeof vt_width != 'undefined') {
+      else if (typeof rtl != 'undefined' && typeof left != 'undefined' && typeof content_width != 'undefined' && typeof vt_width != 'undefined') {
         // Change content and vertical tabs width depending on user's selection (desktop screens).
         var margin = 4;
         var vt_final = vt_width - margin;
 
         $('body').find('#content').css('width', content_width + '%');
         $('body').find('.vertical-tabs-panes').css('width', vt_final + '%');
-        if (left == 1) {
+        if (left == 1 || rtl == 1) {
           $('body').find('#content').css('margin-left', vt_final + '%');
+          left = 1; // In cases where language is rtl.
         }
 
         // Store calculated widths for toggle feature.

@@ -1,3 +1,8 @@
+Vertical Tabs Responsive 7.x-1.1, 2016-Jun-08
+---------------------------------------------
+
+#2762677: Support RTL languages
+
 Vertical Tabs Responsive 7.x-1.0, 2015-Dec-01
 ---------------------------------------------
 
