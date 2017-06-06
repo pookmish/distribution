@@ -624,7 +624,7 @@ else {
   $conf['environment_indicator_overwritten_fixed'] = TRUE;
 }
 
-$local_php = dirname(__FILE__) . '/local.settings.php';
-if (file_exists($local_php) {
-  include_once($local_php);
+$local_settings = dirname(__FILE__) . '/settings.local.php';
+if (file_exists($local_settings)) {
+  include $local_settings;
 }
