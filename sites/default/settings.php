@@ -623,3 +623,8 @@ else {
   $conf['environment_indicator_overwritten_position'] = 'bottom';
   $conf['environment_indicator_overwritten_fixed'] = TRUE;
 }
+
+$local_php = dirname(__FILE__) . '/local.settings.php';
+if (file_exists($local_php) {
+  include_once($local_php);
+}
