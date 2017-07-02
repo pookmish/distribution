@@ -116,6 +116,7 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
         'max_filesize' => isset($field_settings['max_filesize']) ? $field_settings['max_filesize'] : 0,
         'uri_scheme' => !empty($field['settings']['uri_scheme']) ? $field['settings']['uri_scheme'] : file_default_scheme(),
         'multiselect' => $multiselect,
+        'field' => $field['field_name'],
       ),
     ),
     // Allows this field to return an array instead of a single value.
@@ -136,6 +137,13 @@ function media_field_widget_form(&$form, &$form_state, $field, $instance, $langc
     $element['#media_parent_entity_source_langcode'] = $element['#entity']->language;
   } elseif ($element['#entity_type'] == 'field_collection_item' && !empty($form['#entity']) && property_exists($form['#entity'], 'language')) {
     $element['#media_parent_entity_form_langcode'] = $form['#entity']->language;
+  }
+  else if ($element['#entity_type'] == 'paragraphs_item' && !empty($form['#entity'])) {
+    $host = $element['#entity']->hostEntity();
+    if (isset($host->language)) {
+      $element['#media_parent_entity_form_langcode'] = $host->language;
+      $element['#media_parent_entity_source_langcode'] = $host->language;
+    }
   }
 
   // Add image field specific validators.
@@ -258,6 +266,32 @@ function media_field_widget_process($element, &$form_state, $form) {
       '#value' => isset($item['description']) ? $item['description'] : '',
       '#maxlength' => variable_get('file_description_length', 128),
       '#description' => t('The description may be used as the label of the link to the file.'),
+    );
+  }
+
+  // Add the alt field if enabled.
+  if (!empty($instance['settings']['alt_field']) && $item['fid']) {
+    $element['alt'] = array(
+      '#title' => t('Alternate text'),
+      '#type' => 'textfield',
+      '#default_value' => isset($current_value['alt']) ? $current_value['alt'] : '',
+      '#description' => t('This text will be used by screen readers, search engines, or when the image cannot be loaded.<br />
+<em>(Notice: this field is not fetched on -all- formatters yet. For example: If the Rendered file formatter will be used, this field is not available at the moment.)</em>'),
+      '#maxlength' => variable_get('image_alt_length', 80),
+      '#weight' => 1,
+    );
+  }
+
+  // Add the title field if enabled.
+  if (!empty($instance['settings']['title_field']) && $item['fid']) {
+    $element['title'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Title'),
+      '#default_value' => isset($current_value['title']) ? $current_value['title'] : '',
+      '#description' => t('The title is used as a tool tip when the user hovers the mouse over the image.<br />
+<em>(Notice: this field is not fetched on -all- formatters yet. For example: If the Rendered file formatter will be used, this field is not available at the moment.)</em>'),
+      '#maxlength' => variable_get('image_title_length', 500),
+      '#weight' => 2,
     );
   }
 
@@ -551,10 +585,14 @@ function theme_media_widget_multiple($variables) {
     );
   }
 
+  $table = array('header' => $headers, 'rows' => $rows, 'attributes' => array('id' => $table_id));
+
+  drupal_alter('media_widget_multiple', $table, $element);
+
   drupal_add_tabledrag($table_id, 'order', 'sibling', $weight_class);
 
   $output = '';
-  $output = empty($rows) ? '' : theme('table', array('header' => $headers, 'rows' => $rows, 'attributes' => array('id' => $table_id)));
+  $output = empty($rows) ? '' : theme('table', $table);
   $output .= drupal_render_children($element);
   return $output;
 }

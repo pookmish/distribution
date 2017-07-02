@@ -116,7 +116,7 @@ html.js #module-filter-show-wrapper {
   margin-bottom: 1em;
 }
 html.js #module-filter-modules {
-  margin-left: 16rem;
+  margin-left: 240px;
   border: 1px solid #ccc;
 }
 #module-filter-modules table {
@@ -166,9 +166,6 @@ html.js #module-filter-modules table td {
 }
 .admin-version {
   white-space: nowrap;
-}
-.admin-operations {
-  float: right;
 }
 .admin-operations a.module-link {
   display: inline;

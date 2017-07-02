@@ -10,17 +10,11 @@
 function feature_basic_config_wysiwyg_default_profiles() {
   $profiles = array();
 
-  // Exported profile: basic_html
+  // Exported profile: basic_html.
   $profiles['basic_html'] = array(
     'format' => 'basic_html',
     'editor' => 'ckeditor',
     'settings' => array(
-      'default' => 1,
-      'user_choose' => 0,
-      'show_toggle' => 1,
-      'add_to_summaries' => 1,
-      'theme' => 'advanced',
-      'language' => 'en',
       'buttons' => array(
         'default' => array(
           'Bold' => 1,
@@ -62,6 +56,8 @@ function feature_basic_config_wysiwyg_default_profiles() {
           'media' => 1,
         ),
       ),
+      'theme' => 'advanced',
+      'language' => 'en',
       'toolbarLocation' => 'top',
       'resize_enabled' => 1,
       'default_toolbar_grouping' => 0,
@@ -69,6 +65,7 @@ function feature_basic_config_wysiwyg_default_profiles() {
       'acf_mode' => 0,
       'acf_allowed_content' => '',
       'css_setting' => 'self',
+      'css_theme' => '',
       'css_path' => '%b%t/css/wysiwyg.css',
       'stylesSet' => 'Heading 1 = h1
 Heading 2 = h2
@@ -76,9 +73,18 @@ Heading 3 = h3
 Normal = p
 Button = p.file.button',
       'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
-      'advanced__active_tab' => 'edit-paste',
       'forcePasteAsPlainText' => 1,
+      'pasteFromWordPromptCleanup' => 0,
+      'pasteFromWordRemoveFontStyles' => 0,
     ),
+    'preferences' => array(
+      'default' => 1,
+      'user_choose' => 0,
+      'show_toggle' => 1,
+      'add_to_summaries' => 1,
+      'version' => '4.6.2.20af917',
+    ),
+    'name' => 'formatbasic_html',
     'rdf_mapping' => array(),
   );
 

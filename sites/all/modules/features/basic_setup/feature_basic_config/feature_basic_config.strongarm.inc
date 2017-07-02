@@ -289,6 +289,9 @@ function feature_basic_config_strongarm() {
       'original_image' => array(
         'custom_settings' => FALSE,
       ),
+      'wysiwyg' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -361,6 +364,9 @@ function feature_basic_config_strongarm() {
       ),
       'original_image' => array(
         'custom_settings' => TRUE,
+      ),
+      'wysiwyg' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(
@@ -446,6 +452,9 @@ function feature_basic_config_strongarm() {
         'custom_settings' => FALSE,
       ),
       'original_image' => array(
+        'custom_settings' => FALSE,
+      ),
+      'wysiwyg' => array(
         'custom_settings' => FALSE,
       ),
     ),
